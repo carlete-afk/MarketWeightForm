@@ -16,5 +16,15 @@ namespace MarketWeightForm
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Conexion bdConnection = new Conexion();
+            bdConnection.Conectar();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+        }
     }
 }
