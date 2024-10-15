@@ -19,12 +19,20 @@ namespace MarketWeightForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Conexion bdConnection = new Conexion();
-            bdConnection.Conectar();
+            //Form2 registrarse = new Form2();
+            //registrarse.Show();
+            //this.Hide();
+            MostrarUsuarios TablaUsuarios = new MostrarUsuarios();
+            TablaUsuarios.Show();
+            this.Hide();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Conexion bdConnection = new Conexion();
+            //bdConnection.Conectar();
+
         }
     }
 }
