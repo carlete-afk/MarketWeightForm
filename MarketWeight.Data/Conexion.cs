@@ -37,5 +37,10 @@ namespace MarketWeightForm
 
             return connection;
         }
+
+        public MySqlConnection CerraConexion()
+        {
+            connection.Close();
+        }
     }
 }

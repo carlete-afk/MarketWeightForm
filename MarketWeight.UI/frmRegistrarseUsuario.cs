@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace MarketWeightForm
 {
-    public partial class Form2 : Form
+    public partial class frmRegistrarseUsuario : Form
     {
-        public Form2()
+        public frmRegistrarseUsuario()
         {
             InitializeComponent();
 

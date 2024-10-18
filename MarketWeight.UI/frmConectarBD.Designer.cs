@@ -1,6 +1,6 @@
 ﻿namespace MarketWeightForm
 {
-    partial class Form1
+    partial class frmConectarBD
     {
         /// <summary>
         /// Variable del diseñador necesaria.

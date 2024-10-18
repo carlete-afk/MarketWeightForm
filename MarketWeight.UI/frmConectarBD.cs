@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MarketWeightForm
 {
-    public partial class Form1 : Form
+    public partial class frmConectarBD : Form
     {
-        public Form1()
+        public frmConectarBD()
         {
             InitializeComponent();
         }

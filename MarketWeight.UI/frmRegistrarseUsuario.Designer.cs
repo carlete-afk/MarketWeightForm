@@ -1,6 +1,6 @@
 ﻿namespace MarketWeightForm
 {
-    partial class Form2
+    partial class frmRegistrarseUsuario
     {
         /// <summary>
         /// Required designer variable.
