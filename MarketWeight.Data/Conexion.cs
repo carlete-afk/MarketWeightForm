@@ -27,6 +27,7 @@ namespace MarketWeightForm
             {
                 connection.ConnectionString = connectionString;
                 connection.Open();
+                
                 MessageBox.Show("Lograste meterte en la BD");
             }
 
@@ -38,7 +39,7 @@ namespace MarketWeightForm
             return connection;
         }
 
-        public MySqlConnection CerraConexion()
+        public  void CerraConexion()
         {
             connection.Close();
         }

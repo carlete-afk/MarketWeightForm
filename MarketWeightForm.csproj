@@ -61,11 +61,11 @@
     <Compile Include="MarketWeight.UI\frmConectarBD.Designer.cs">
       <DependentUpon>frmConectarBD.cs</DependentUpon>
     </Compile>
-    <Compile Include="MarketWeight.UI\frmObtenerUsuarios.cs">
+    <Compile Include="MarketWeight.UI\frmUserTabla.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MarketWeight.UI\frmObtenerUsuarios.Designer.cs">
-      <DependentUpon>frmObtenerUsuarios.cs</DependentUpon>
+    <Compile Include="MarketWeight.UI\frmUserTabla.Designer.cs">
+      <DependentUpon>frmUserTabla.cs</DependentUpon>
     </Compile>
     <Compile Include="MarketWeight.UI\frmRegistrarseUsuario.cs">
       <SubType>Form</SubType>
@@ -78,8 +78,8 @@
     <EmbeddedResource Include="MarketWeight.UI\frmConectarBD.resx">
       <DependentUpon>frmConectarBD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MarketWeight.UI\frmObtenerUsuarios.resx">
-      <DependentUpon>frmObtenerUsuarios.cs</DependentUpon>
+    <EmbeddedResource Include="MarketWeight.UI\frmUserTabla.resx">
+      <DependentUpon>frmUserTabla.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MarketWeight.UI\frmRegistrarseUsuario.resx">
       <DependentUpon>frmRegistrarseUsuario.cs</DependentUpon>

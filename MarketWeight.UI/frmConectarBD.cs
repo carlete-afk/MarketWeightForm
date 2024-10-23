@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MarketWeightForm.MarketWeight.UI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,23 +16,22 @@ namespace MarketWeightForm
         public frmConectarBD()
         {
             InitializeComponent();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //Form2 registrarse = new Form2();
-            //registrarse.Show();
-            //this.Hide();
-            MostrarUsuarios TablaUsuarios = new MostrarUsuarios();
-            TablaUsuarios.Show();
-            this.Hide();
+            Conexion bdConnection = new Conexion();
+            bdConnection.Conectar();
 
+            frmUserTabla Usuarios = new frmUserTabla();
+            Usuarios.Show();
+            this.Hide();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Conexion bdConnection = new Conexion();
-            //bdConnection.Conectar();
+
 
         }
     }

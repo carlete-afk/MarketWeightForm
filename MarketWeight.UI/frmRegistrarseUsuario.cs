@@ -17,10 +17,6 @@ namespace MarketWeightForm
         {
             InitializeComponent();
 
-            string Nombre;
-            string Apellido;
-            string Email;
-            string Pass;
         }
 
         private void Form2_Load(object sender, EventArgs e)
