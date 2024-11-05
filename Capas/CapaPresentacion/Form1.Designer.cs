@@ -1,4 +1,4 @@
-﻿namespace MarketWeightForm
+﻿namespace CapaPresentacion
 {
     partial class Form1
     {

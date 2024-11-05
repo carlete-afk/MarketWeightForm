@@ -1,4 +1,4 @@
-namespace MarketWeightForm
+namespace CapaPresentacion
 {
     internal static class Program
     {
@@ -11,9 +11,7 @@ namespace MarketWeightForm
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-
-            //TODO: Crear el Menu Principal en capa presentacion e inicializarlo aqui debajo vvv
-            //Application.Run(new Form1());
+            Application.Run(new Form1());
         }
     }
 }
