@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace CapaDatos
 {
-    internal class Conexion
+    public class Conexion
     {
         MySqlConnection connection = new MySqlConnection();
 

@@ -10,29 +10,19 @@ using System.Windows.Forms;
 
 namespace CapaPresentacion
 {
-    public partial class frmRegistro : Form
+    public partial class frmLogin : Form
     {
-        public frmRegistro()
+        public frmLogin()
         {
             InitializeComponent();
         }
 
+        private void lblNombre_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void titulo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void inputNombre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
         {
 
         }

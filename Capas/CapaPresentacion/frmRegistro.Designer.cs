@@ -28,16 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRegistro));
             titulo = new Label();
             inputNombre = new TextBox();
             lblNombre = new Label();
             lblEmail = new Label();
             inputMail = new TextBox();
-            lblApellido = new Label();
-            inputApellido = new TextBox();
+            btnRegistro = new Button();
+            pictureBox1 = new PictureBox();
             lblPassword = new Label();
             inputPassword = new TextBox();
-            btnRegistro = new Button();
+            lblApellido = new Label();
+            inputApellido = new TextBox();
+            btnVolver = new Button();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // titulo
@@ -45,7 +49,7 @@
             titulo.AutoSize = true;
             titulo.Font = new Font("Sitka Small", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             titulo.ForeColor = Color.White;
-            titulo.Location = new Point(270, 46);
+            titulo.Location = new Point(58, 46);
             titulo.Name = "titulo";
             titulo.Size = new Size(245, 71);
             titulo.TabIndex = 1;
@@ -55,7 +59,7 @@
             // inputNombre
             // 
             inputNombre.Font = new Font("Microsoft Tai Le", 12F);
-            inputNombre.Location = new Point(127, 177);
+            inputNombre.Location = new Point(58, 172);
             inputNombre.Name = "inputNombre";
             inputNombre.Size = new Size(179, 28);
             inputNombre.TabIndex = 2;
@@ -66,7 +70,7 @@
             lblNombre.AutoSize = true;
             lblNombre.Font = new Font("Microsoft Tai Le", 12F);
             lblNombre.ForeColor = Color.White;
-            lblNombre.Location = new Point(127, 151);
+            lblNombre.Location = new Point(58, 146);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(68, 21);
             lblNombre.TabIndex = 3;
@@ -78,68 +82,90 @@
             lblEmail.AutoSize = true;
             lblEmail.Font = new Font("Microsoft Tai Le", 12F);
             lblEmail.ForeColor = Color.White;
-            lblEmail.Location = new Point(127, 253);
+            lblEmail.Location = new Point(58, 256);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(68, 21);
+            lblEmail.Size = new Size(54, 21);
             lblEmail.TabIndex = 5;
-            lblEmail.Text = "Nombre";
+            lblEmail.Text = "E-mail";
             lblEmail.Click += label2_Click;
             // 
             // inputMail
             // 
             inputMail.Font = new Font("Microsoft Tai Le", 12F);
-            inputMail.Location = new Point(127, 279);
+            inputMail.Location = new Point(58, 282);
             inputMail.Name = "inputMail";
             inputMail.Size = new Size(179, 28);
             inputMail.TabIndex = 4;
             // 
-            // lblApellido
+            // btnRegistro
             // 
-            lblApellido.AutoSize = true;
-            lblApellido.Font = new Font("Microsoft Tai Le", 12F);
-            lblApellido.ForeColor = Color.White;
-            lblApellido.Location = new Point(470, 151);
-            lblApellido.Name = "lblApellido";
-            lblApellido.Size = new Size(68, 21);
-            lblApellido.TabIndex = 7;
-            lblApellido.Text = "Nombre";
+            btnRegistro.Font = new Font("Sitka Text", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRegistro.Location = new Point(58, 368);
+            btnRegistro.Name = "btnRegistro";
+            btnRegistro.Size = new Size(159, 37);
+            btnRegistro.TabIndex = 10;
+            btnRegistro.Text = "Registrate";
+            btnRegistro.UseVisualStyleBackColor = true;
             // 
-            // inputApellido
+            // pictureBox1
             // 
-            inputApellido.Font = new Font("Microsoft Tai Le", 12F);
-            inputApellido.Location = new Point(470, 177);
-            inputApellido.Name = "inputApellido";
-            inputApellido.Size = new Size(179, 28);
-            inputApellido.TabIndex = 6;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.InitialImage = null;
+            pictureBox1.Location = new Point(502, 89);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(252, 285);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 11;
+            pictureBox1.TabStop = false;
             // 
             // lblPassword
             // 
             lblPassword.AutoSize = true;
             lblPassword.Font = new Font("Microsoft Tai Le", 12F);
             lblPassword.ForeColor = Color.White;
-            lblPassword.Location = new Point(470, 253);
+            lblPassword.Location = new Point(275, 256);
             lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(68, 21);
-            lblPassword.TabIndex = 9;
-            lblPassword.Text = "Nombre";
+            lblPassword.Size = new Size(89, 21);
+            lblPassword.TabIndex = 15;
+            lblPassword.Text = "Contraseña";
             // 
             // inputPassword
             // 
             inputPassword.Font = new Font("Microsoft Tai Le", 12F);
-            inputPassword.Location = new Point(470, 279);
+            inputPassword.Location = new Point(275, 282);
             inputPassword.Name = "inputPassword";
             inputPassword.Size = new Size(179, 28);
-            inputPassword.TabIndex = 8;
+            inputPassword.TabIndex = 14;
             // 
-            // btnRegistro
+            // lblApellido
             // 
-            btnRegistro.Font = new Font("Sitka Text", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnRegistro.Location = new Point(300, 360);
-            btnRegistro.Name = "btnRegistro";
-            btnRegistro.Size = new Size(159, 37);
-            btnRegistro.TabIndex = 10;
-            btnRegistro.Text = "Registrate";
-            btnRegistro.UseVisualStyleBackColor = true;
+            lblApellido.AutoSize = true;
+            lblApellido.Font = new Font("Microsoft Tai Le", 12F);
+            lblApellido.ForeColor = Color.White;
+            lblApellido.Location = new Point(275, 146);
+            lblApellido.Name = "lblApellido";
+            lblApellido.Size = new Size(67, 21);
+            lblApellido.TabIndex = 17;
+            lblApellido.Text = "Apellido";
+            // 
+            // inputApellido
+            // 
+            inputApellido.Font = new Font("Microsoft Tai Le", 12F);
+            inputApellido.Location = new Point(275, 172);
+            inputApellido.Name = "inputApellido";
+            inputApellido.Size = new Size(179, 28);
+            inputApellido.TabIndex = 16;
+            // 
+            // btnVolver
+            // 
+            btnVolver.Font = new Font("Sitka Text", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnVolver.Location = new Point(674, 409);
+            btnVolver.Name = "btnVolver";
+            btnVolver.Size = new Size(114, 29);
+            btnVolver.TabIndex = 26;
+            btnVolver.Text = "Volver al Menu";
+            btnVolver.UseVisualStyleBackColor = true;
+            btnVolver.Click += btnVolver_Click;
             // 
             // frmRegistro
             // 
@@ -147,11 +173,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SlateGray;
             ClientSize = new Size(800, 450);
-            Controls.Add(btnRegistro);
-            Controls.Add(lblPassword);
-            Controls.Add(inputPassword);
+            Controls.Add(btnVolver);
             Controls.Add(lblApellido);
             Controls.Add(inputApellido);
+            Controls.Add(lblPassword);
+            Controls.Add(inputPassword);
+            Controls.Add(pictureBox1);
+            Controls.Add(btnRegistro);
             Controls.Add(lblEmail);
             Controls.Add(inputMail);
             Controls.Add(lblNombre);
@@ -159,6 +187,7 @@
             Controls.Add(titulo);
             Name = "frmRegistro";
             Text = "Registro";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -170,10 +199,12 @@
         private Label lblNombre;
         private Label lblEmail;
         private TextBox inputMail;
-        private Label lblApellido;
-        private TextBox inputApellido;
+        private Button btnRegistro;
+        private PictureBox pictureBox1;
         private Label lblPassword;
         private TextBox inputPassword;
-        private Button btnRegistro;
+        private Label lblApellido;
+        private TextBox inputApellido;
+        private Button btnVolver;
     }
 }
