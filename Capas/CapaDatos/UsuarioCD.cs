@@ -65,5 +65,33 @@ namespace CapaDatos
                 return false;
             }
         }
+
+        //Traer las monedas del usuario
+
+        internal void CriptosDelUsuario(UsuarioMonedaCE usuarioMonedaCE, DataGridView tablaCriptoUsuario)
+        {
+            try
+            {
+                Conexion objetoConectar = new Conexion();
+
+              
+                string query = "SELECT M.nombre, UM.cantidad FROM UsuarioMoneda UM JOIN Moneda M USING(idMoneda) WHERE idUsuario = @idUsuario;";
+
+                
+                tablaCriptoUsuario.DataSource = null;
+                MySqlDataAdapter adapter = new MySqlDataAdapter(query, objetoConectar.Conectar());
+                adapter.SelectCommand.Parameters.AddWithValue("@idUsuario", usuarioMonedaCE.idUsuario);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                tablaCriptoUsuario.DataSource = dt;
+
+                objetoConectar.CerraConexion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo mostrar las criptos: " + ex.Message);
+            }
+        }
+
     }
 }
