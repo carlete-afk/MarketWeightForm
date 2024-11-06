@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CapaEntidad\CapaEntidad.csproj" />
   </ItemGroup>
 
   <ItemGroup>

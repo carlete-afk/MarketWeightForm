@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapaNegocio
+namespace CapaDatos
 {
-    internal class Class1
+    internal class MonedaCD
     {
+        
     }
 }
