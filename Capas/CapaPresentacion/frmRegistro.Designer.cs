@@ -188,6 +188,7 @@
             Controls.Add(titulo);
             Name = "frmRegistro";
             Text = "Registro";
+            Load += frmRegistro_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

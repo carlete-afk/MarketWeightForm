@@ -11,10 +11,10 @@ using System.Data;
 
 namespace CapaDatos
 {
-    internal class UsuarioCD
+    public class UsuarioCD
     {
         //Ingreso de login
-        internal bool UsuarioLogin (UsuarioCE usuario)
+        public bool UsuarioLogin (UsuarioCE usuario)
         {
             try
             {
@@ -31,24 +31,24 @@ namespace CapaDatos
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
 
-                objetoConectar.CerraConexion();
+                objetoConectar.CerrarConexion();
 
 
                 return dt.Rows.Count > 0;
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return false;
             }
         }
 
         //Registro
-        internal bool UsuarioRegistro(UsuarioCE usuario)
+        public bool UsuarioRegistro(UsuarioCE usuario)
         {
             try
             {
-                Conexion conexion = new Conexion();
-                MySqlCommand cmd = new MySqlCommand("AltaUsuario", conexion.Conectar());
+                Conexion conexion = new();
+                MySqlCommand cmd = new("AltaUsuario", conexion.Conectar());
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("xnombre", usuario.Nombre);
@@ -57,11 +57,13 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("xpass", usuario.Password);
 
                 cmd.ExecuteNonQuery();
+
                 return true;
 
             }
             catch (Exception ex)
             {
+                MessageBox.Show($"Error! \n\n{ex} ");
                 return false;
             }
         }

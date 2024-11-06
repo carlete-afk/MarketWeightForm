@@ -11,9 +11,9 @@ using CapaEntidad;
 
 namespace CapaNegocio
 {
-    internal class MetodosUsuario
+    public class MetodosUsuario
     {
-        public void AltaUsuario(string nombre, string apellido, string email, string password, decimal? saldo)
+        public UsuarioCE AltaUsuario(string nombre, string apellido, string email, string password, decimal saldo)
         {
             UsuarioCE Usuario1 = new UsuarioCE()
             {
@@ -21,12 +21,12 @@ namespace CapaNegocio
                 Apellido = apellido,
                 Email = email,
                 Password = password,
+                Saldo = saldo
             };
 
-            if (Convert.ToBoolean(saldo))
-                Usuario1.Saldo = Convert.ToDecimal(saldo);
+            
 
-            UsuarioRegistro(Usuario1);
+            return Usuario1;
         }
     }
 }

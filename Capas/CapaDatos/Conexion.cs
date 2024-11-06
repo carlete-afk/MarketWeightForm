@@ -29,8 +29,6 @@ namespace CapaDatos
             {
                 connection.ConnectionString = connectionString;
                 connection.Open();
-
-                MessageBox.Show("Lograste meterte en la BD");
             }
 
             catch (MySqlException e)
@@ -41,7 +39,7 @@ namespace CapaDatos
             return connection;
         }
 
-        public void CerraConexion()
+        public void CerrarConexion()
         {
             connection.Close();
         }
