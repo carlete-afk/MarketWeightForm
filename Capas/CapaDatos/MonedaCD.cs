@@ -8,6 +8,6 @@ namespace CapaDatos
 {
     internal class MonedaCD
     {
-        
+        //Monedas 
     }
 }
