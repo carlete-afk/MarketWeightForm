@@ -14,17 +14,36 @@ namespace CapaDatos
     internal class UsuarioCD
     {
         //Ingreso de login
-        internal void UsuarioLogin (UsuarioCE usuario)
+        internal bool UsuarioLogin (UsuarioCE usuario)
         {
             try
             {
                 Conexion objetoConectar = new Conexion();
-                string query = $"SELECT * FROM Usuario WHERE email = {usuario.Email}";
+                string query = $"SELECT * FROM Usuario WHERE email = @email AND pass = @Password;";
+
+                //Uso de parametros
+                MySqlCommand cmd = new MySqlCommand(query, objetoConectar.Conectar());
+                cmd.Parameters.AddWithValue("@Email", usuario.Email);
+                cmd.Parameters.AddWithValue("@Password", usuario.Password);
+
+
+                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                objetoConectar.CerraConexion();
+
+
+                return dt.Rows.Count > 0;
+            }
+            catch(Exception ex)
+            {
+                return false;
             }
         }
 
         //Registro
-        internal void Registro(UsuarioCE usuario)
+        internal bool UsuarioRegistro(UsuarioCE usuario)
         {
             try
             {
@@ -38,12 +57,12 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("xpass", usuario.Password);
 
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Lograste registraste con exito!");
+                return true;
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se pudo dar de alta el usuario| Error System!!!" + ex.ToString());
+                return false;
             }
         }
     }
