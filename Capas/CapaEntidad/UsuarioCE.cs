@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
+
     public class UsuarioCE
     {
         public int idUsuario { get; set; }
@@ -14,7 +15,5 @@ namespace CapaEntidad
         public required string Email { get; set; }
         public required string Password { get; set; }
         public decimal Saldo { get; set; }
-
-
     }
 }

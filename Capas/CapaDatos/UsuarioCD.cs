@@ -3,28 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CapaEntidad;
-using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using CapaEntidad;
 using System.Data;
+using MySql.Data.MySqlClient;
 
 
 namespace CapaDatos
 {
     public class UsuarioCD
     {
+        
+
         //Ingreso de login
-        public bool UsuarioLogin (UsuarioCE usuario)
+        public bool UsuarioLogin (string email, string pass)
         {
             try
             {
                 Conexion objetoConectar = new Conexion();
-                string query = $"SELECT * FROM Usuario WHERE email = @email AND pass = @Password;";
+                string query = $"SELECT * FROM Usuario WHERE email = @Email AND pass = @Password;";
 
                 //Uso de parametros
                 MySqlCommand cmd = new MySqlCommand(query, objetoConectar.Conectar());
-                cmd.Parameters.AddWithValue("@Email", usuario.Email);
-                cmd.Parameters.AddWithValue("@Password", usuario.Password);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Password", pass);
 
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
@@ -33,11 +35,11 @@ namespace CapaDatos
 
                 objetoConectar.CerrarConexion();
 
-
                 return dt.Rows.Count > 0;
             }
-            catch(Exception)
+            catch(Exception ex)
             {
+                MessageBox.Show($"Error! \n\n{ex} ");
                 return false;
             }
         }
@@ -66,15 +68,19 @@ namespace CapaDatos
         }
 
         //Traer las monedas del usuario
-        internal void CriptosDelUsuario(UsuarioMonedaCE usuarioMonedaCE, DataGridView tablaCriptoUsuario)
+
+        public void CriptosDelUsuario(UsuarioMonedaCE usuarioMonedaCE, DataGridView tablaCriptoUsuario)
         {
             try
             {
                 Conexion objetoConectar = new Conexion();
 
-              
-                string query = "SELECT M.nombre, UM.cantidad FROM UsuarioMoneda UM JOIN Moneda M USING(idMoneda) WHERE idUsuario = @idUsuario;";
-
+                string query = @"
+                    SELECT M.nombre AS 'Criptomoneda', UM.cantidad AS 'Cantidad'
+                    FROM UsuarioMoneda UM
+                    JOIN Moneda M USING(idMoneda)
+                    WHERE idUsuario = @idUsuario;
+                ";
                 
                 tablaCriptoUsuario.DataSource = null;
                 MySqlDataAdapter adapter = new MySqlDataAdapter(query, objetoConectar.Conectar());
@@ -83,7 +89,7 @@ namespace CapaDatos
                 adapter.Fill(dt);
                 tablaCriptoUsuario.DataSource = dt;
 
-                objetoConectar.CerraConexion();
+                objetoConectar.CerrarConexion();
             }
             catch (Exception ex)
             {

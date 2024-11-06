@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaNegocio;
-using CapaEntidad;
 using CapaDatos;
 
 namespace CapaPresentacion
@@ -62,7 +61,7 @@ namespace CapaPresentacion
 
             UsuarioCD userCD = new UsuarioCD();
 
-            bool x = userCD.UsuarioRegistro(user1.AltaUsuario(inputNombre.Text, inputApellido.Text, inputMail.Text, inputPassword.Text, 0));
+            bool x = userCD.UsuarioRegistro(user1.CrearUsuario(inputNombre.Text, inputApellido.Text, inputMail.Text, inputPassword.Text, 0));
 
             if(x)
             {

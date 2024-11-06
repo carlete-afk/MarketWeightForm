@@ -54,6 +54,7 @@
             btnMostrarCriptos.TabIndex = 1;
             btnMostrarCriptos.Text = "Mostrar todas las criptomonedas";
             btnMostrarCriptos.UseVisualStyleBackColor = true;
+            btnMostrarCriptos.Click += btnMostrarCriptos_Click;
             // 
             // btnBuscarCripto
             // 
@@ -72,6 +73,7 @@
             btnMisCriptos.TabIndex = 3;
             btnMisCriptos.Text = "Mostrar mis criptomonedas";
             btnMisCriptos.UseVisualStyleBackColor = true;
+            btnMisCriptos.Click += btnMisCriptos_Click;
             // 
             // lblNombreCripto
             // 

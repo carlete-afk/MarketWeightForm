@@ -15,10 +15,13 @@ namespace CapaNegocio
     {
         public UsuarioCE ObtenerIdUsuario(UsuarioCE Usuario1)
         {
+            //TODO: colocar un return bueno
             Usuario1.idUsuario = Convert.ToInt32(ObtenerIdUsuario(Usuario1));
-        }
 
-        public UsuarioCE AltaUsuario(string nombre, string apellido, string email, string password, decimal saldo)
+            return Usuario1;
+        }
+        
+        public UsuarioCE CrearUsuario(string nombre, string apellido, string email, string password, decimal saldo)
         {
             UsuarioCE Usuario1 = new UsuarioCE()
             {
@@ -28,8 +31,6 @@ namespace CapaNegocio
                 Password = password,
                 Saldo = saldo
             };
-
-            
 
             return Usuario1;
         }

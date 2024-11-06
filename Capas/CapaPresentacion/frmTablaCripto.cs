@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapaDatos;
+using CapaEntidad;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +22,20 @@ namespace CapaPresentacion
         private void lblEmail_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnMostrarCriptos_Click(object sender, EventArgs e)
+        {
+            MonedaCD cripto1 = new();
+
+            cripto1.TraerCriptos(dgvTabla);
+        }
+
+        private void btnMisCriptos_Click(object sender, EventArgs e)
+        {
+            UsuarioCD cripto1 = new();
+
+            cripto1.CriptosDelUsuario(UsuarioMonedaCE.idUsuario);
         }
     }
 }

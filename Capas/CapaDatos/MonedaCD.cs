@@ -10,16 +10,16 @@ using System.Data;
 
 namespace CapaDatos
 {
-    internal class MonedaCD
+    public class MonedaCD
     {
         //Monedas 
-        internal void TraerCriptos(DataGridView tablaMonedas)
+        public void TraerCriptos(DataGridView tablaMonedas)
         {
             try
             {
                 Conexion objetoConectar = new Conexion();
 
-                string query = "SELECT * FROM Moneda;";
+                string query = "SELECT nombre AS 'Criptomoneda', precio AS 'Precio', cantidad AS 'Cantidad' FROM Moneda;";
                 tablaMonedas.DataSource = null;
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(query, objetoConectar.Conectar());
@@ -27,7 +27,7 @@ namespace CapaDatos
                 adapter.Fill(dt);
                 tablaMonedas.DataSource = dt;
 
-                objetoConectar.CerraConexion();
+                objetoConectar.CerrarConexion();
             }
             catch (Exception ex)
             {
