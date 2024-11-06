@@ -79,6 +79,7 @@
             btnLogin.TabIndex = 21;
             btnLogin.Text = "Entrar";
             btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.Click += btnLogin_Click;
             // 
             // lblEmail
             // 
@@ -139,6 +140,7 @@
             Controls.Add(titulo);
             Name = "frmLogin";
             Text = "frmLogin";
+            Load += frmLogin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

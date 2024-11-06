@@ -106,6 +106,7 @@
             btnRegistro.TabIndex = 10;
             btnRegistro.Text = "Registrate";
             btnRegistro.UseVisualStyleBackColor = true;
+            btnRegistro.Click += btnRegistro_Click;
             // 
             // pictureBox1
             // 
@@ -187,6 +188,7 @@
             Controls.Add(titulo);
             Name = "frmRegistro";
             Text = "Registro";
+            Load += frmRegistro_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

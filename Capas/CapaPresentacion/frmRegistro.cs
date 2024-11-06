@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaNegocio;
+using CapaEntidad;
+using CapaDatos;
 
 namespace CapaPresentacion
 {
@@ -15,6 +18,14 @@ namespace CapaPresentacion
         public frmRegistro()
         {
             InitializeComponent();
+        }
+
+        private void resetInputs()
+        {
+            inputNombre.Text = "";
+            inputApellido.Text = "";
+            inputMail.Text = "";
+            inputPassword.Text = "";
         }
 
         private void titulo_Click(object sender, EventArgs e)
@@ -43,6 +54,30 @@ namespace CapaPresentacion
             frmMenuPrincipal frmMenuPrincipal = new();
 
             frmMenuPrincipal.Show();
+        }
+
+        private void btnRegistro_Click(object sender, EventArgs e)
+        {
+            MetodosUsuario user1 = new();
+
+            UsuarioCD userCD = new UsuarioCD();
+
+            bool x = userCD.UsuarioRegistro(user1.AltaUsuario(inputNombre.Text, inputApellido.Text, inputMail.Text, inputPassword.Text, 0));
+
+            if(x)
+            {
+                frmTablaCripto frmTablaCripto = new frmTablaCripto();
+                frmTablaCripto.Show();
+                Hide();
+            }
+            else
+                resetInputs();
+
+        }
+
+        private void frmRegistro_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -34,5 +34,26 @@ namespace CapaPresentacion
 
             frmMenuPrincipal.Show();
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            /*
+                TODO:
+                    si login no fue existoso:
+                        error.
+                    sino:
+                        vvvv
+             */
+
+            frmTablaCripto frmTablaCripto = new frmTablaCripto();
+            frmTablaCripto.Show();
+
+            Hide();
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

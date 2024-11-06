@@ -11,11 +11,25 @@ using CapaEntidad;
 
 namespace CapaNegocio
 {
-    internal class MetodosUsuario
+    public class MetodosUsuario
     {
         public UsuarioCE ObtenerIdUsuario(UsuarioCE Usuario1)
         {
             Usuario1.idUsuario = Convert.ToInt32(ObtenerIdUsuario(Usuario1));
+        }
+
+        public UsuarioCE AltaUsuario(string nombre, string apellido, string email, string password, decimal saldo)
+        {
+            UsuarioCE Usuario1 = new UsuarioCE()
+            {
+                Nombre = nombre,
+                Apellido = apellido,
+                Email = email,
+                Password = password,
+                Saldo = saldo
+            };
+
+            
 
             return Usuario1;
         }
