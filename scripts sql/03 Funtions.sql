@@ -32,3 +32,24 @@ BEGIN
     END IF;
 END $$
 
+DROP FUNCTION IF EXISTS ObtenerIdUsuario $$
+CREATE FUNCTION `ObtenerIdUsuario`(xemail varchar(45), xpass varchar(45)) RETURNS INT
+READS SQL DATA
+BEGIN
+    SELECT idUsuario INTO @xidusuario
+    FROM Usuario
+    WHERE `email` = xemail AND `pass` = xpass;
+    
+    RETURN @xidusuario;
+END $$
+
+DROP FUNCTION IF EXISTS ObtenerIdMoneda $$
+CREATE FUNCTION `ObtenerIdMoneda`(xnombre varchar(45)) RETURNS INT
+READS SQL DATA
+BEGIN
+    SELECT idMoneda INTO @xidmoneda
+    FROM Moneda
+    WHERE `nombre` = xnombre;
+    
+    RETURN @xidmoneda;
+END $$

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-    internal class MonedaCE
+    public class MonedaCE
     {
+        public int idMoneda { get; set; }
         public required decimal Precio { get; set; }
         public required decimal Cantidad { get; set; }
         public required string Nombre { get; set; }
