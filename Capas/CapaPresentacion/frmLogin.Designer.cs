@@ -79,6 +79,7 @@
             btnLogin.TabIndex = 21;
             btnLogin.Text = "Entrar";
             btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.Click += btnLogin_Click;
             // 
             // lblEmail
             // 

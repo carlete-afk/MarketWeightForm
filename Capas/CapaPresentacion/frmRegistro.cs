@@ -44,5 +44,23 @@ namespace CapaPresentacion
 
             frmMenuPrincipal.Show();
         }
+
+        private void btnRegistro_Click(object sender, EventArgs e)
+        {
+            /*
+                TODO:
+                    si no registro fue existoso:
+                        error
+                    sino:
+                        popup de confirmacion.
+                        vvvv
+             */
+
+
+            frmTablaCripto frmTablaCripto = new frmTablaCripto();
+            frmTablaCripto.Show();
+
+            Hide();
+        }
     }
 }

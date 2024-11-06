@@ -106,6 +106,7 @@
             btnRegistro.TabIndex = 10;
             btnRegistro.Text = "Registrate";
             btnRegistro.UseVisualStyleBackColor = true;
+            btnRegistro.Click += btnRegistro_Click;
             // 
             // pictureBox1
             // 
