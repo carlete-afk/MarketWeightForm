@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
-    internal class MetodosMoneda
+    internal class MonedaCN
     {
-        public UsuarioCE ObtenerIdMoneda(MonedaCE Moneda1)
+        public MonedaCE ObtenerIdMoneda(MonedaCE Moneda1)
         {
-            Moneda1.idMoneda= Convert.ToInt32(ObtenerIdMoneda(Moneda1));
+            Moneda1.idMoneda = Convert.ToInt32(ObtenerIdMoneda(Moneda1));
 
             return Moneda1;
         }

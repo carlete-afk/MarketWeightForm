@@ -26,16 +26,29 @@ namespace CapaPresentacion
 
         private void btnMostrarCriptos_Click(object sender, EventArgs e)
         {
-            MonedaCD cripto1 = new();
+            MonedaCD capaDatos = new();
 
-            cripto1.TraerCriptos(dgvTabla);
+            capaDatos.TraerCriptos(dgvTabla);
         }
 
         private void btnMisCriptos_Click(object sender, EventArgs e)
         {
-            UsuarioCD cripto1 = new();
+            UsuarioCD capaDatos = new();
 
-            cripto1.CriptosDelUsuario(UsuarioMonedaCE.idUsuario);
+            capaDatos.CriptosDelUsuario(dgvTabla);
+        }
+
+        private void btnBuscarCripto_Click(object sender, EventArgs e)
+        {
+            MonedaCD capaDatos = new();
+
+            bool x = capaDatos.BuscarCriptos(inputSearch.Text, dgvTabla);
+
+            if (x == false)
+            {
+                MessageBox.Show("No existen criptomonedas con ese nombre");
+                inputSearch.Text = "";
+            }
         }
     }
 }

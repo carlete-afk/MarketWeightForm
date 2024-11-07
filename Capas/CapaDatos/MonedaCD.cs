@@ -36,31 +36,34 @@ namespace CapaDatos
         }
 
 
-        internal void BuscarCriptos(MonedaCE monedaCE, DataGridView tablaMonedas)
+        public bool BuscarCriptos(string nombre, DataGridView tablaMonedas)
         {
             try
             {
                 Conexion objetoConectar = new();
 
-                string query = "SELECT nombre, precio, cantidad FROM Moneda WHERE nombre = @nombre;";
+                string query = $"SELECT nombre 'Criptomoneda', precio 'Precio', cantidad 'Cantidad' FROM Moneda WHERE nombre LIKE '%{nombre}%';";
                 tablaMonedas.DataSource = null;
 
                 tablaMonedas.DataSource = null;
                 MySqlDataAdapter adapter = new MySqlDataAdapter(query, objetoConectar.Conectar());
-                adapter.SelectCommand.Parameters.AddWithValue("@nombre", monedaCE.Nombre);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 tablaMonedas.DataSource = dt;
 
-                objetoConectar.CerraConexion();
+                objetoConectar.CerrarConexion();
+
+                return true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("No se encontro la criptomoneda" + ex.ToString());
+
+                return false;
             }
         }
 
-        internal int ObtenerIdMoneda(MonedaCE moneda)
+        public int ObtenerIdMoneda(MonedaCE moneda)
         {
             try
             {

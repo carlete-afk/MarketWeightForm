@@ -33,7 +33,7 @@
             btnBuscarCripto = new Button();
             btnMisCriptos = new Button();
             lblNombreCripto = new Label();
-            inputEmail = new TextBox();
+            inputSearch = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvTabla).BeginInit();
             SuspendLayout();
             // 
@@ -64,6 +64,7 @@
             btnBuscarCripto.TabIndex = 2;
             btnBuscarCripto.Text = "Buscar Criptomonedas";
             btnBuscarCripto.UseVisualStyleBackColor = true;
+            btnBuscarCripto.Click += btnBuscarCripto_Click;
             // 
             // btnMisCriptos
             // 
@@ -87,13 +88,13 @@
             lblNombreCripto.Text = "Nombre";
             lblNombreCripto.Click += lblEmail_Click;
             // 
-            // inputEmail
+            // inputSearch
             // 
-            inputEmail.Font = new Font("Microsoft Tai Le", 12F);
-            inputEmail.Location = new Point(12, 359);
-            inputEmail.Name = "inputEmail";
-            inputEmail.Size = new Size(153, 28);
-            inputEmail.TabIndex = 19;
+            inputSearch.Font = new Font("Microsoft Tai Le", 12F);
+            inputSearch.Location = new Point(12, 359);
+            inputSearch.Name = "inputSearch";
+            inputSearch.Size = new Size(153, 28);
+            inputSearch.TabIndex = 19;
             // 
             // frmTablaCripto
             // 
@@ -102,7 +103,7 @@
             BackColor = Color.SlateGray;
             ClientSize = new Size(800, 450);
             Controls.Add(lblNombreCripto);
-            Controls.Add(inputEmail);
+            Controls.Add(inputSearch);
             Controls.Add(btnMisCriptos);
             Controls.Add(btnBuscarCripto);
             Controls.Add(btnMostrarCriptos);
@@ -121,6 +122,6 @@
         private Button btnBuscarCripto;
         private Button btnMisCriptos;
         private Label lblNombreCripto;
-        private TextBox inputEmail;
+        private TextBox inputSearch;
     }
 }

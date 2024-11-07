@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapaDatos;
+using CapaNegocio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,12 @@ namespace CapaPresentacion
         public frmLogin()
         {
             InitializeComponent();
+        }
+
+        public void resetInputs()
+        {
+            inputEmail.Text = "";
+            inputPassword.Text = "";
         }
 
         private void lblNombre_Click(object sender, EventArgs e)
@@ -37,18 +45,23 @@ namespace CapaPresentacion
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            /*
-                TODO:
-                    si login no fue existoso:
-                        error.
-                    sino:
-                        vvvv
-             */
+            UsuarioCN capaNegocio = new();
 
-            frmTablaCripto frmTablaCripto = new frmTablaCripto();
-            frmTablaCripto.Show();
+            bool x = capaNegocio.EstablecerUsuarioDelLogin(inputEmail.Text, inputPassword.Text);
 
-            Hide();
+            if (x)
+            {
+                frmTablaCripto frmTablaCripto = new frmTablaCripto();
+                frmTablaCripto.Show();
+
+                Hide();
+            }
+
+            else
+            {
+                resetInputs();
+                MessageBox.Show("Error! Email o contraseña invalido, intente nuevamente.");
+            }
         }
 
         private void frmLogin_Load(object sender, EventArgs e)

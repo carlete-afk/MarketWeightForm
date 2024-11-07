@@ -11,7 +11,7 @@ using CapaEntidad;
 
 namespace CapaNegocio
 {
-    public class MetodosUsuario
+    public class UsuarioCN
     {
         public UsuarioCE ObtenerIdUsuario(UsuarioCE Usuario1)
         {
@@ -33,6 +33,24 @@ namespace CapaNegocio
             };
 
             return Usuario1;
+        }
+
+        public bool EstablecerUsuarioDelLogin(string email, string pass)
+        {
+            UsuarioCD capaDatos = new();
+
+            UsuarioCE user = capaDatos.UsuarioLogin(email, pass);
+
+            if (user is not null)
+            {
+                UsuarioCE.userMain = user;
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
         }
     }
 }

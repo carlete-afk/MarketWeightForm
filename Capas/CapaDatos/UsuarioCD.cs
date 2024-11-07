@@ -7,45 +7,77 @@ using System.Windows.Forms;
 using CapaEntidad;
 using System.Data;
 using MySql.Data.MySqlClient;
-
+using System.Security.Cryptography;
 
 namespace CapaDatos
 {
     public class UsuarioCD
     {
-        
+        private static string HashPassword(string password)
+        {
+            // Esta funcion recibe string y devuelve un HASH con el método SHA256.
+
+            using SHA256 sha256Hash = SHA256.Create();
+            byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
+
+            StringBuilder builder = new StringBuilder();
+
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                builder.Append(bytes[i].ToString("x2"));
+            }
+            return builder.ToString();
+        }
 
         //Ingreso de login
-        public bool UsuarioLogin (string email, string pass)
+        public UsuarioCE UsuarioLogin(string email, string pass)
         {
+            pass = HashPassword(pass);
+
             try
             {
                 Conexion objetoConectar = new Conexion();
+
                 string query = $"SELECT * FROM Usuario WHERE email = @Email AND pass = @Password;";
 
-                //Uso de parametros
                 MySqlCommand cmd = new MySqlCommand(query, objetoConectar.Conectar());
                 cmd.Parameters.AddWithValue("@Email", email);
                 cmd.Parameters.AddWithValue("@Password", pass);
 
+                MySqlDataReader reader = cmd.ExecuteReader();
 
-                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
+                if (reader.Read())
+                {
+                    UsuarioCE usuario = new UsuarioCE
+                    {
+                        idUsuario = reader.GetInt32("idUsuario"),
+                        Nombre = reader.GetString("Nombre"),
+                        Apellido = reader.GetString("Apellido"),
+                        Email = reader.GetString("Email"),
+                        Password = reader.GetString("pass"),
+                        Saldo = reader.GetDecimal("Saldo")
+                    };
 
-                objetoConectar.CerrarConexion();
+                    reader.Close();
+                    objetoConectar.CerrarConexion();
 
-                return dt.Rows.Count > 0;
+                    return usuario;
+                }
+                else
+                {
+                    reader.Close();
+                    objetoConectar.CerrarConexion();
+                    return null;
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"Error! \n\n{ex} ");
-                return false;
+                return null;
             }
         }
 
-        //Registro
-        internal IEnumerable<UsuarioCE> UsuarioRegistro(UsuarioCE usuario)
+        public UsuarioCE UsuarioRegistro(UsuarioCE usuario)
         {
             try
             {
@@ -59,17 +91,19 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("xpass", usuario.Password);
 
                 cmd.ExecuteNonQuery();
-                return (IEnumerable<UsuarioCE>)usuario;
+
+                UsuarioCE.userMain = usuario;
+
             }
             catch (Exception ex)
             {
-                return MessageBox.Show("Error no se pudo registrar", ex);
+                MessageBox.Show("Error no se pudo registrar\n" + ex.Message);
             }
+
+            return usuario;
         }
 
-        //Traer las monedas del usuario
-
-        public void CriptosDelUsuario(UsuarioMonedaCE usuarioMonedaCE, DataGridView tablaCriptoUsuario)
+        public void CriptosDelUsuario(DataGridView tablaCriptoUsuario)
         {
             try
             {
@@ -84,7 +118,7 @@ namespace CapaDatos
                 
                 tablaCriptoUsuario.DataSource = null;
                 MySqlDataAdapter adapter = new MySqlDataAdapter(query, objetoConectar.Conectar());
-                adapter.SelectCommand.Parameters.AddWithValue("@idUsuario", usuarioMonedaCE.idUsuario);
+                adapter.SelectCommand.Parameters.AddWithValue("@idUsuario", UsuarioCE.userMain.idUsuario);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 tablaCriptoUsuario.DataSource = dt;
@@ -113,7 +147,7 @@ namespace CapaDatos
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

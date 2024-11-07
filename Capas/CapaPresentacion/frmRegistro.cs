@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaEntidad;
 using CapaNegocio;
 using CapaDatos;
 
@@ -57,13 +58,13 @@ namespace CapaPresentacion
 
         private void btnRegistro_Click(object sender, EventArgs e)
         {
-            MetodosUsuario user1 = new();
+            UsuarioCN capaNegocio = new();
 
-            UsuarioCD userCD = new UsuarioCD();
+            UsuarioCD capaDatos = new UsuarioCD();
 
-            bool x = userCD.UsuarioRegistro(user1.CrearUsuario(inputNombre.Text, inputApellido.Text, inputMail.Text, inputPassword.Text, 0));
+            UsuarioCE user1 = capaDatos.UsuarioRegistro(capaNegocio.CrearUsuario(inputNombre.Text, inputApellido.Text, inputMail.Text, inputPassword.Text, 0));
 
-            if(x)
+            if(user1 == UsuarioCE.userMain)
             {
                 frmTablaCripto frmTablaCripto = new frmTablaCripto();
                 frmTablaCripto.Show();
