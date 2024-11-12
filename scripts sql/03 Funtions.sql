@@ -33,14 +33,16 @@ BEGIN
 END $$
 
 DROP FUNCTION IF EXISTS ObtenerIdUsuario $$
-CREATE FUNCTION `ObtenerIdUsuario`(xemail varchar(45), xpass varchar(45)) RETURNS INT
+CREATE FUNCTION `ObtenerIdUsuario`(xemail varchar(45)) RETURNS INT UNSIGNED
 READS SQL DATA
 BEGIN
-    SELECT idUsuario INTO @xidusuario
-    FROM Usuario
-    WHERE `email` = xemail AND `pass` = xpass;
+    DECLARE xidusuario INT UNSIGNED;
     
-    RETURN @xidusuario;
+    SELECT idUsuario INTO xidusuario
+    FROM Usuario
+    WHERE email = xemail;
+    
+    RETURN xidusuario;
 END $$
 
 DROP FUNCTION IF EXISTS ObtenerIdMoneda $$
@@ -53,3 +55,22 @@ BEGIN
     
     RETURN @xidmoneda;
 END $$
+
+DROP FUNCTION IF EXISTS PuedeVender $$
+CREATE FUNCTION `PuedeVender`(xidusuario INT, xcantidadAVender DECIMAL(20,10), xidmoneda INT UNSIGNED) RETURNS TINYINT
+READS SQL DATA
+BEGIN
+    SELECT cantidad INTO @cantidadMonedasUsuario
+    FROM `UsuarioMoneda`
+    WHERE `idMoneda` = xidmoneda AND `idUsuario` = xidusuario;
+
+    IF(@cantidadMonedasUsuario >= xcantidadAVender)
+    THEN
+        RETURN 1;
+    ELSE
+        RETURN 0;
+    END IF;
+END $$
+
+
+

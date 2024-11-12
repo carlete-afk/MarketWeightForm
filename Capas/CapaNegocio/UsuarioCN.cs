@@ -13,24 +13,28 @@ namespace CapaNegocio
 {
     public class UsuarioCN
     {
-        public UsuarioCE ObtenerIdUsuario(UsuarioCE Usuario1)
+        public int ObtenerIdUsuario(UsuarioCE Usuario1)
         {
+            UsuarioCD capaDatos = new UsuarioCD();
             //TODO: colocar un return bueno
-            Usuario1.idUsuario = Convert.ToInt32(ObtenerIdUsuario(Usuario1));
+            int id = Convert.ToInt32(capaDatos.ObtenerIdUsuario(Usuario1));
 
-            return Usuario1;
+            return id;
         }
         
         public UsuarioCE CrearUsuario(string nombre, string apellido, string email, string password, decimal saldo)
         {
             UsuarioCE Usuario1 = new UsuarioCE()
             {
+                idUsuario = 0,
                 Nombre = nombre,
                 Apellido = apellido,
                 Email = email,
                 Password = password,
                 Saldo = saldo
             };
+
+            Usuario1.idUsuario = ObtenerIdUsuario(Usuario1);
 
             return Usuario1;
         }
