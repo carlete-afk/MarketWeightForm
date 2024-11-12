@@ -131,7 +131,7 @@ namespace CapaDatos
             }
         }
 
-        internal bool CompraCripto(UsuarioMonedaCE UsuarioMonedaE,UsuarioCE usuarioE, decimal cantidad )
+        internal bool CompraCripto(MonedaCE MonedaE,UsuarioCE usuarioE, decimal cantidad )
         {
             try
             {
@@ -141,7 +141,53 @@ namespace CapaDatos
 
                 cmd.Parameters.AddWithValue("xidusuario", usuarioE.idUsuario);
                 cmd.Parameters.AddWithValue("xcantidad", cantidad);
-                cmd.Parameters.AddWithValue("xidmoneda", UsuarioMonedaE. idMoneda);
+                cmd.Parameters.AddWithValue("xidmoneda", MonedaE.idMoneda);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception) 
+            {
+                return false;
+            }
+        }
+
+        internal bool VenderCripto(MonedaCE MonedaE, UsuarioCE usuarioE, decimal cantidad)
+        {
+            try
+            {
+                Conexion conexion = new();
+                MySqlCommand cmd = new MySqlCommand("VenderMoneda", conexion.Conectar());
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("xidusuario", usuarioE.idUsuario);
+                cmd.Parameters.AddWithValue("xcantidad", cantidad);
+                cmd.Parameters.AddWithValue("xidmoneda", MonedaE.idMoneda);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
+        internal bool TransferirCripto(MonedaCE MonedaE, UsuarioCE usuarioE, decimal cantidad, )
+        {
+            try
+            {
+                Conexion conexion = new();
+                MySqlCommand cmd = new MySqlCommand("Transferencia", conexion.Conectar());
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("xidusuario", usuarioE.idUsuario);
+                cmd.Parameters.AddWithValue("xcantidad", cantidad);
+                cmd.Parameters.AddWithValue("xidmoneda", MonedaE.idMoneda);
 
                 int rowsAffected = cmd.ExecuteNonQuery();
 
@@ -153,7 +199,7 @@ namespace CapaDatos
             }
         }
 
-        internal int ObtenerIdUsuario(UsuarioCE usuario)
+        public int ObtenerIdUsuario(UsuarioCE usuario)
         {
             try
             {
@@ -161,8 +207,7 @@ namespace CapaDatos
                 MySqlCommand cmd = new MySqlCommand("ObtenerIdUsuario", conexion.Conectar());
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("xnombre", usuario.Nombre);
-                cmd.Parameters.AddWithValue("xapellido", usuario.Apellido);
+                cmd.Parameters.AddWithValue("xemail", usuario.Email);
                 var resultado = cmd.ExecuteScalar();
                 return Convert.ToInt32(resultado);
 

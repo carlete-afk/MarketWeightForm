@@ -25,3 +25,5 @@ CALL IngresarDinero(1, 10000);
 CALL IngresarDinero(2, 10000);
 CALL IngresarDinero(3, 10000);
 CALL ComprarMoneda(1, 2, 1);
+
+CALL Transferencia (1, 0.5, 1, 3);
