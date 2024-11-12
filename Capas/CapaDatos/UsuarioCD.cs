@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using CapaEntidad;
-using System.Data;
+﻿using CapaEntidad;
 using MySql.Data.MySqlClient;
+using System.Data;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace CapaDatos
 {
@@ -115,7 +110,7 @@ namespace CapaDatos
                     JOIN Moneda M USING(idMoneda)
                     WHERE idUsuario = @idUsuario;
                 ";
-                
+
                 tablaCriptoUsuario.DataSource = null;
                 MySqlDataAdapter adapter = new MySqlDataAdapter(query, objetoConectar.Conectar());
                 adapter.SelectCommand.Parameters.AddWithValue("@idUsuario", UsuarioCE.userMain.idUsuario);
@@ -131,7 +126,7 @@ namespace CapaDatos
             }
         }
 
-        internal bool CompraCripto(MonedaCE MonedaE,UsuarioCE usuarioE, decimal cantidad )
+        internal bool CompraCripto(MonedaCE MonedaE, UsuarioCE usuarioE, decimal cantidad)
         {
             try
             {
@@ -147,7 +142,7 @@ namespace CapaDatos
 
                 return true;
             }
-            catch (Exception) 
+            catch (Exception)
             {
                 return false;
             }
@@ -177,7 +172,7 @@ namespace CapaDatos
         }
 
 
-        internal bool TransferirCripto(MonedaCE MonedaE, UsuarioCE usuarioE, decimal cantidad, )
+        internal bool TransferirCripto(MonedaCE MonedaE, UsuarioCE usuarioE, decimal cantidad, string emailUsuarioTransferido)
         {
             try
             {
@@ -209,9 +204,10 @@ namespace CapaDatos
 
                 cmd.Parameters.AddWithValue("xemail", usuario.Email);
                 var resultado = cmd.ExecuteScalar();
-                return Convert.ToInt32(resultado);
 
+                return Convert.ToInt32(resultado);
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show("No se pudo obtener el ID: " + ex.Message);

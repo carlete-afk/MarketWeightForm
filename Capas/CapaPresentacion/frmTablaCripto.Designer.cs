@@ -57,7 +57,7 @@
             btnMostrarCriptos.Name = "btnMostrarCriptos";
             btnMostrarCriptos.Size = new Size(153, 27);
             btnMostrarCriptos.TabIndex = 1;
-            btnMostrarCriptos.Text = "Mostrar Todas";
+            btnMostrarCriptos.Text = "Mostrar Todo";
             btnMostrarCriptos.UseVisualStyleBackColor = true;
             btnMostrarCriptos.Click += btnMostrarCriptos_Click;
             // 

@@ -10,6 +10,7 @@ CALL AltaCriptoMoneda(90.00, 100, 'Chainlink');
 CALL AltaCriptoMoneda(110.15, 100, 'Stellar');
 CALL AltaCriptoMoneda(40.60, 100, 'Dogecoin');
 CALL AltaCriptoMoneda(70.85, 100, 'Tron');
+CALL AltaUsuario('admin', 'admin', 'admin', 'admin');
 CALL AltaUsuario('Ana', 'Garcia', 'ana.garcia@example.com', 'pass1234');
 CALL AltaUsuario('Luis', 'Martinez', 'luis.martinez@example.com', '1234abcd');
 CALL AltaUsuario('Marta', 'Fernandez', 'marta.fernandez@example.com', 'abcd1234');
@@ -20,10 +21,9 @@ CALL AltaUsuario('Sofia', 'Hernandez', 'sofia.hernandez@example.com', '12345678'
 CALL AltaUsuario('Daniel', 'Perez', 'daniel.perez@example.com', '1q2w3e4r');
 CALL AltaUsuario('Maria', 'Torres', 'maria.torres@example.com', 'letmein1');
 CALL AltaUsuario('Javier', 'Ramirez', 'javier.ramirez@example.com', 'welcome1');
-CALL AltaUsuario('admin', 'admin', 'admin', 'admin');
-CALL IngresarDinero(1, 10000);
+CALL IngresarDinero(1, 100000);
 CALL IngresarDinero(2, 10000);
 CALL IngresarDinero(3, 10000);
 CALL ComprarMoneda(1, 2, 1);
-
-CALL Transferencia (1, 0.5, 1, 3);
+CALL ComprarMoneda(1, 2, 5);
+CALL ComprarMoneda(1, 5, 3);

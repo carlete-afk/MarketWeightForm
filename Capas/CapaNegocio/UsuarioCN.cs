@@ -13,11 +13,11 @@ namespace CapaNegocio
 {
     public class UsuarioCN
     {
-        public int ObtenerIdUsuario(UsuarioCE Usuario1)
+        public int ObtenerIdUsuario(UsuarioCE user)
         {
             UsuarioCD capaDatos = new UsuarioCD();
-            //TODO: colocar un return bueno
-            int id = Convert.ToInt32(capaDatos.ObtenerIdUsuario(Usuario1));
+            
+            int id = capaDatos.ObtenerIdUsuario(user);
 
             return id;
         }

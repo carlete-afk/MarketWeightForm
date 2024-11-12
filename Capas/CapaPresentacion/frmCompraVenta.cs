@@ -15,6 +15,9 @@ namespace CapaPresentacion
     public partial class frmCompraVenta : Form
     {
         private bool _compra = true;
+        MonedaCD capaDatosM = new();
+        UsuarioCD capaDatosU = new();
+
         public frmCompraVenta()
         {
             InitializeComponent();
@@ -22,8 +25,7 @@ namespace CapaPresentacion
 
         private void CambiarCompraVenta(bool compra)
         {
-            MonedaCD capaDatosM = new();
-            UsuarioCD capaDatosU = new();
+            
 
 
             if (_compra)
@@ -60,6 +62,7 @@ namespace CapaPresentacion
 
         private void frmCompraVenta_Load(object sender, EventArgs e)
         {
+            capaDatosM.TraerCriptos(dgvTabla);
             lblCriptoActual.Text = "";
         }
 
