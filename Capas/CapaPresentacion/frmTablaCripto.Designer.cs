@@ -41,10 +41,13 @@
             // 
             // dgvTabla
             // 
+            dgvTabla.AllowUserToAddRows = false;
+            dgvTabla.AllowUserToDeleteRows = false;
             dgvTabla.BackgroundColor = Color.LightSteelBlue;
             dgvTabla.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvTabla.Location = new Point(171, 12);
             dgvTabla.Name = "dgvTabla";
+            dgvTabla.ReadOnly = true;
             dgvTabla.Size = new Size(617, 426);
             dgvTabla.TabIndex = 0;
             // 
@@ -93,7 +96,7 @@
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.InitialImage = null;
-            pictureBox1.Location = new Point(12, 12);
+            pictureBox1.Location = new Point(9, 12);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(153, 167);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;

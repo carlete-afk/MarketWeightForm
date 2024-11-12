@@ -62,16 +62,32 @@ namespace CapaPresentacion
 
             UsuarioCD capaDatos = new UsuarioCD();
 
-            UsuarioCE user1 = capaDatos.UsuarioRegistro(capaNegocio.CrearUsuario(inputNombre.Text, inputApellido.Text, inputMail.Text, inputPassword.Text, 0));
-
-            if(user1 == UsuarioCE.userMain)
+            UsuarioCE user1 = new UsuarioCE()
             {
-                frmTablaCripto frmTablaCripto = new frmTablaCripto();
-                frmTablaCripto.Show();
-                Hide();
-            }
-            else
-                resetInputs();
+                Nombre = "",
+                Apellido = "",
+                Email = "",
+                Password = ""
+            };
+
+            if (!string.IsNullOrWhiteSpace(inputNombre.Text) &&
+                !string.IsNullOrWhiteSpace(inputMail.Text) &&
+                !string.IsNullOrWhiteSpace(inputApellido.Text) &&
+                !string.IsNullOrWhiteSpace(inputPassword.Text))
+            {
+                user1 = capaDatos.UsuarioRegistro(capaNegocio.CrearUsuario(inputNombre.Text, inputApellido.Text, inputMail.Text, inputPassword.Text, 0));
+
+                if (user1 == UsuarioCE.userMain)
+                {
+                    frmTablaCripto frmTablaCripto = new frmTablaCripto();
+                    frmTablaCripto.Show();
+                    Hide();
+
+                } else resetInputs();
+
+            } else MessageBox.Show("Completa todos los campos!");
+
+            
 
         }
 

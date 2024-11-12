@@ -1,5 +1,5 @@
-﻿using CapaDatos;
-using CapaNegocio;
+﻿using CapaNegocio;
+using CapaEntidad;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,8 +51,12 @@ namespace CapaPresentacion
 
             if (x)
             {
-                frmTablaCripto frmTablaCripto = new frmTablaCripto();
-                frmTablaCripto.Show();
+                //frmTablaCripto frmTablaCripto = new frmTablaCripto();
+                //frmTablaCripto.Show();
+
+                frmCompraVenta frmCompraVenta = new();
+
+                frmCompraVenta.Show();
 
                 Hide();
             }

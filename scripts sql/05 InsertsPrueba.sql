@@ -20,7 +20,7 @@ CALL AltaUsuario('Sofia', 'Hernandez', 'sofia.hernandez@example.com', '12345678'
 CALL AltaUsuario('Daniel', 'Perez', 'daniel.perez@example.com', '1q2w3e4r');
 CALL AltaUsuario('Maria', 'Torres', 'maria.torres@example.com', 'letmein1');
 CALL AltaUsuario('Javier', 'Ramirez', 'javier.ramirez@example.com', 'welcome1');
-CALL AltaUsuario('admin', 'admin', 'admin@gmail.com', 'admin');
+CALL AltaUsuario('admin', 'admin', 'admin', 'admin');
 CALL IngresarDinero(1, 10000);
 CALL IngresarDinero(2, 10000);
 CALL IngresarDinero(3, 10000);
