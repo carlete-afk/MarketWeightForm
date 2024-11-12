@@ -40,15 +40,14 @@ namespace CapaPresentacion
 
         private void btnBuscarCripto_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void inputSearch_TextChanged(object sender, EventArgs e)
+        {
             MonedaCD capaDatos = new();
 
-            bool x = capaDatos.BuscarCriptos(inputSearch.Text, dgvTabla);
-
-            if (x == false)
-            {
-                MessageBox.Show("No existen criptomonedas con ese nombre");
-                inputSearch.Text = "";
-            }
+            capaDatos.BuscarCriptos(inputSearch.Text, dgvTabla);
         }
     }
 }
