@@ -18,7 +18,7 @@ namespace CapaEntidad
             Saldo = 0
         };
 
-        public int idUsuario { get; set; }
+        public uint idUsuario { get; set; }
         public required string Nombre { get; set; }
         public required string Apellido { get; set; }
         public required string Email { get; set; }

@@ -13,18 +13,18 @@ namespace CapaNegocio
 {
     public class UsuarioCN
     {
-        public int ObtenerIdUsuario(UsuarioCE user)
+        public uint ObtenerIdUsuario(UsuarioCE user)
         {
             UsuarioCD capaDatos = new UsuarioCD();
             
-            int id = capaDatos.ObtenerIdUsuario(user.Email);
+            uint id = capaDatos.ObtenerIdUsuario(user.Email);
 
             return id;
         }
         
         public UsuarioCE CrearUsuario(string nombre, string apellido, string email, string password, decimal saldo)
         {
-            UsuarioCE Usuario1 = new UsuarioCE()
+            UsuarioCE user = new UsuarioCE()
             {
                 idUsuario = 0,
                 Nombre = nombre,
@@ -34,9 +34,9 @@ namespace CapaNegocio
                 Saldo = saldo
             };
 
-            Usuario1.idUsuario = ObtenerIdUsuario(Usuario1);
+            user.idUsuario = ObtenerIdUsuario(user);
 
-            return Usuario1;
+            return user;
         }
 
         public bool EstablecerUsuarioDelLogin(string email, string pass)

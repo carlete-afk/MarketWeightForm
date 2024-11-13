@@ -47,7 +47,7 @@ namespace CapaDatos
                 {
                     UsuarioCE usuario = new UsuarioCE
                     {
-                        idUsuario = reader.GetInt32("idUsuario"),
+                        idUsuario = reader.GetUInt32("idUsuario"),
                         Nombre = reader.GetString("Nombre"),
                         Apellido = reader.GetString("Apellido"),
                         Email = reader.GetString("Email"),
@@ -200,26 +200,32 @@ namespace CapaDatos
             }
         }
 
-        public int ObtenerIdUsuario(string email)
+        public uint ObtenerIdUsuario(string email)
         {
             try
             {
                 Conexion conexion = new Conexion();
-                MySqlCommand cmd = new MySqlCommand("ObtenerIdUsuario", conexion.Conectar());
-                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlCommand cmd = new MySqlCommand("SELECT ObtenerIdUsuario(@xemail);", conexion.Conectar());
 
-                cmd.Parameters.AddWithValue("xemail", email);
+                cmd.CommandType = CommandType.Text;
+
+                cmd.Parameters.AddWithValue("@xemail", email);
+
                 var resultado = cmd.ExecuteScalar();
 
-                return Convert.ToInt32(resultado);
+                if (resultado == DBNull.Value)
+                {
+                    return 0;
+                }
+                return Convert.ToUInt32(resultado);
             }
-
             catch (DbException ex)
             {
-                MessageBox.Show("No se pudo obtener el ID: " + ex.Message);
+                MessageBox.Show("No se pudo obtener el ID\n\n" + ex.Message);
                 return 0;
             }
         }
+
 
         public bool IngresarDinero(UsuarioCE usuario, decimal saldo)
         {
@@ -240,6 +246,39 @@ namespace CapaDatos
             {
                 MessageBox.Show("No se pudo vender la cripto!", ex.Message);
                 return false;
+            }
+        }
+        /*
+        `idMoneda` INT UNSIGNED NOT NULL,
+        `cantidad` DECIMAL(20,10) NOT NULL,
+        `fechaHora` DATETIME NOT NULL,
+        `compra` TINYINT UNSIGNED,*/
+        public void HistorialUsuario(DataGridView tablaHistorialUsuario)
+        {
+            try
+            {
+                Conexion objetoConectar = new Conexion();
+
+                string query = @"
+                    SELECT M.nombre, H.cantidad, H.fechaHora
+                    FROM Historial H
+                    JOIN Usuario U USING(idUsuario)
+                    JOIN Moneda M USING(idMoneda)
+                    WHERE idUsuario = @idUsuario;
+                ";
+
+                tablaHistorialUsuario.DataSource = null;
+                MySqlDataAdapter adapter = new MySqlDataAdapter(query, objetoConectar.Conectar());
+                adapter.SelectCommand.Parameters.AddWithValue("@idUsuario", UsuarioCE.userMain.idUsuario);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                tablaHistorialUsuario.DataSource = dt;
+
+                objetoConectar.CerrarConexion();
+            }
+            catch (DbException ex)
+            {
+                MessageBox.Show("No se pudo mostrar el Historial: " + ex.Message);
             }
         }
 

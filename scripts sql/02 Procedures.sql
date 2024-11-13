@@ -68,7 +68,7 @@ BEGIN
               AND idUsuario = xidusuario;
 
               INSERT INTO Historial (idMoneda, cantidad, fechaHora, compra, idUsuario)
-              VALUES (ObtenerIdMoneda(xnombre), xcantidad, NOW(), FALSE, xidusuario);
+              VALUES (ObtenerIdMoneda(xnombre), (xcantidad * -1), NOW(), FALSE, xidusuario);
        ELSE
               SIGNAL SQLSTATE '45000'
               SET MESSAGE_TEXT = "Cantidad Insuficiente!";
