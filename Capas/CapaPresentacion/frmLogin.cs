@@ -37,10 +37,10 @@ namespace CapaPresentacion
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            Hide();
             frmMenuPrincipal frmMenuPrincipal = new();
-
             frmMenuPrincipal.Show();
+
+            Close();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -51,14 +51,9 @@ namespace CapaPresentacion
 
             if (x)
             {
-                //frmTablaCripto frmTablaCripto = new frmTablaCripto();
-                //frmTablaCripto.Show();
-
-                frmCompraVenta frmCompraVenta = new();
-
-                frmCompraVenta.Show();
-
-                Hide();
+                frmMenuUsuario frmMenuUsuario = new frmMenuUsuario();
+                frmMenuUsuario.Show();
+                Close();
             }
 
             else

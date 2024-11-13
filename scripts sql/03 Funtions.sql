@@ -33,16 +33,14 @@ BEGIN
 END $$
 
 DROP FUNCTION IF EXISTS ObtenerIdUsuario $$
-CREATE FUNCTION `ObtenerIdUsuario`(xemail varchar(45)) RETURNS INT UNSIGNED
+CREATE FUNCTION `ObtenerIdUsuario`(xemail varchar(45)) RETURNS INT
 READS SQL DATA
 BEGIN
-    DECLARE xidusuario INT UNSIGNED;
-    
-    SELECT idUsuario INTO xidusuario
+    SELECT idUsuario INTO @idusuario
     FROM Usuario
     WHERE email = xemail;
     
-    RETURN xidusuario;
+    RETURN @idusuario;
 END $$
 
 DROP FUNCTION IF EXISTS ObtenerIdMoneda $$

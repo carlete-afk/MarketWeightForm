@@ -73,7 +73,7 @@
             // btnLogin
             // 
             btnLogin.Font = new Font("Sitka Text", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnLogin.Location = new Point(43, 279);
+            btnLogin.Location = new Point(162, 266);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(159, 37);
             btnLogin.TabIndex = 21;
@@ -116,7 +116,7 @@
             // btnVolver
             // 
             btnVolver.Font = new Font("Sitka Text", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnVolver.Location = new Point(674, 409);
+            btnVolver.Location = new Point(12, 409);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(114, 29);
             btnVolver.TabIndex = 25;
@@ -139,7 +139,7 @@
             Controls.Add(inputEmail);
             Controls.Add(titulo);
             Name = "frmLogin";
-            Text = "frmLogin";
+            Text = "MarketWeight";
             Load += frmLogin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

@@ -18,7 +18,7 @@ namespace CapaPresentacion
             formRegistro.Show();
 
             Hide();
-            
+
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

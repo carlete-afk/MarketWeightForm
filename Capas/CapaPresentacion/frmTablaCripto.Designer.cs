@@ -32,9 +32,11 @@
             dgvTabla = new DataGridView();
             btnMostrarCriptos = new Button();
             btnMisCriptos = new Button();
-            lblNombreCripto = new Label();
+            lblBusqueda = new Label();
             inputSearch = new TextBox();
             pictureBox1 = new PictureBox();
+            btnVolver = new Button();
+            titulo = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvTabla).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -45,10 +47,10 @@
             dgvTabla.AllowUserToDeleteRows = false;
             dgvTabla.BackgroundColor = Color.LightSteelBlue;
             dgvTabla.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvTabla.Location = new Point(171, 12);
+            dgvTabla.Location = new Point(171, 88);
             dgvTabla.Name = "dgvTabla";
             dgvTabla.ReadOnly = true;
-            dgvTabla.Size = new Size(617, 426);
+            dgvTabla.Size = new Size(617, 350);
             dgvTabla.TabIndex = 0;
             // 
             // btnMostrarCriptos
@@ -71,24 +73,24 @@
             btnMisCriptos.UseVisualStyleBackColor = true;
             btnMisCriptos.Click += btnMisCriptos_Click;
             // 
-            // lblNombreCripto
+            // lblBusqueda
             // 
-            lblNombreCripto.AutoSize = true;
-            lblNombreCripto.Font = new Font("Microsoft Tai Le", 12F);
-            lblNombreCripto.ForeColor = Color.White;
-            lblNombreCripto.Location = new Point(12, 200);
-            lblNombreCripto.Name = "lblNombreCripto";
-            lblNombreCripto.Size = new Size(78, 21);
-            lblNombreCripto.TabIndex = 20;
-            lblNombreCripto.Text = "Búsqueda";
-            lblNombreCripto.Click += lblEmail_Click;
+            lblBusqueda.AutoSize = true;
+            lblBusqueda.Font = new Font("Microsoft Tai Le", 12F);
+            lblBusqueda.ForeColor = Color.White;
+            lblBusqueda.Location = new Point(458, 54);
+            lblBusqueda.Name = "lblBusqueda";
+            lblBusqueda.Size = new Size(144, 21);
+            lblBusqueda.TabIndex = 20;
+            lblBusqueda.Text = "Busca la cripto aquí";
+            lblBusqueda.Click += lblEmail_Click;
             // 
             // inputSearch
             // 
             inputSearch.Font = new Font("Microsoft Tai Le", 12F);
-            inputSearch.Location = new Point(12, 226);
+            inputSearch.Location = new Point(608, 47);
             inputSearch.Name = "inputSearch";
-            inputSearch.Size = new Size(153, 28);
+            inputSearch.Size = new Size(180, 28);
             inputSearch.TabIndex = 19;
             inputSearch.TextChanged += inputSearch_TextChanged;
             // 
@@ -96,12 +98,34 @@
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.InitialImage = null;
-            pictureBox1.Location = new Point(9, 12);
+            pictureBox1.Location = new Point(12, 88);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(153, 167);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 23;
             pictureBox1.TabStop = false;
+            // 
+            // btnVolver
+            // 
+            btnVolver.Font = new Font("Sitka Text", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnVolver.Location = new Point(12, 409);
+            btnVolver.Name = "btnVolver";
+            btnVolver.Size = new Size(114, 29);
+            btnVolver.TabIndex = 26;
+            btnVolver.Text = "Volver al Menu";
+            btnVolver.UseVisualStyleBackColor = true;
+            btnVolver.Click += btnVolver_Click;
+            // 
+            // titulo
+            // 
+            titulo.AutoSize = true;
+            titulo.Font = new Font("Sitka Small", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            titulo.ForeColor = Color.White;
+            titulo.Location = new Point(12, 9);
+            titulo.Name = "titulo";
+            titulo.Size = new Size(419, 71);
+            titulo.TabIndex = 27;
+            titulo.Text = "Criptomonedas";
             // 
             // frmTablaCripto
             // 
@@ -109,14 +133,17 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SlateGray;
             ClientSize = new Size(800, 450);
+            Controls.Add(titulo);
+            Controls.Add(btnVolver);
             Controls.Add(pictureBox1);
-            Controls.Add(lblNombreCripto);
+            Controls.Add(lblBusqueda);
             Controls.Add(inputSearch);
             Controls.Add(btnMisCriptos);
             Controls.Add(btnMostrarCriptos);
             Controls.Add(dgvTabla);
             Name = "frmTablaCripto";
-            Text = "Tabla Principal";
+            Text = "MarketWeight";
+            Load += frmTablaCripto_Load;
             ((System.ComponentModel.ISupportInitialize)dgvTabla).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
@@ -128,8 +155,10 @@
         private DataGridView dgvTabla;
         private Button btnMostrarCriptos;
         private Button btnMisCriptos;
-        private Label lblNombreCripto;
+        private Label lblBusqueda;
         private TextBox inputSearch;
         private PictureBox pictureBox1;
+        private Button btnVolver;
+        private Label titulo;
     }
 }

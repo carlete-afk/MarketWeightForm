@@ -1,11 +1,12 @@
 ﻿using CapaDatos;
-using CapaNegocio;
+using CapaEntidad;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,7 +26,7 @@ namespace CapaPresentacion
 
         private void CambiarCompraVenta(bool compra)
         {
-            
+
 
 
             if (_compra)
@@ -66,11 +67,6 @@ namespace CapaPresentacion
             lblCriptoActual.Text = "";
         }
 
-        private void lblCompraVenta_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnCambiarTransaccion_Click(object sender, EventArgs e)
         {
             _compra = !_compra;
@@ -92,9 +88,51 @@ namespace CapaPresentacion
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            UsuarioCN capaNegocio = new();
+            UsuarioCD capaDatos = new();
 
-            //TODO: if compra: comprar() else: vender()
+            if (_compra)
+            {
+                try
+                {
+                    capaDatos.CompraCripto(dgvTabla.CurrentCell.Value.ToString(), UsuarioCE.userMain, Convert.ToDecimal(inputCantidad.Text));
+
+                    MessageBox.Show("Compra realizada con éxito!");
+
+                    inputCantidad.Text = "";
+                    capaDatosM.TraerCriptos(dgvTabla);
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error!\n\n" + ex.Message);
+                }
+            }
+
+            else
+            {
+                try
+                {
+                    capaDatos.VenderCripto(dgvTabla.CurrentCell.Value.ToString(), UsuarioCE.userMain, Convert.ToDecimal(inputCantidad.Text));
+
+                    MessageBox.Show("Venta realizada con éxito!");
+
+                    inputCantidad.Text = "";
+                    capaDatosU.CriptosDelUsuario(dgvTabla);
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error!\n\n" + ex.Message);
+                }
+                
+            }
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            frmMenuUsuario frmMenuUsuario = new();
+            frmMenuUsuario.Show();
+            Close();
         }
     }
 }

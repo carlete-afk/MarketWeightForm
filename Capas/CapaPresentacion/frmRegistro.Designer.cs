@@ -100,7 +100,7 @@
             // btnRegistro
             // 
             btnRegistro.Font = new Font("Sitka Text", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnRegistro.Location = new Point(58, 368);
+            btnRegistro.Location = new Point(295, 349);
             btnRegistro.Name = "btnRegistro";
             btnRegistro.Size = new Size(159, 37);
             btnRegistro.TabIndex = 10;
@@ -160,7 +160,7 @@
             // btnVolver
             // 
             btnVolver.Font = new Font("Sitka Text", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnVolver.Location = new Point(674, 409);
+            btnVolver.Location = new Point(12, 409);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(114, 29);
             btnVolver.TabIndex = 26;
@@ -187,7 +187,7 @@
             Controls.Add(inputNombre);
             Controls.Add(titulo);
             Name = "frmRegistro";
-            Text = "Registro";
+            Text = "MarketWeight";
             Load += frmRegistro_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

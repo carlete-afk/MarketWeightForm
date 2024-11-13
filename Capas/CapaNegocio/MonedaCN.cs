@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
-    internal class MonedaCN
+    public class MonedaCN
     {
         public MonedaCE ObtenerIdMoneda(MonedaCE Moneda1)
         {

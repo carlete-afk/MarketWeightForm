@@ -26,7 +26,6 @@ namespace CapaDatos
             return builder.ToString();
         }
 
-        //Ingreso de login
         public UsuarioCE UsuarioLogin(string email, string pass)
         {
             pass = HashPassword(pass);
@@ -69,7 +68,7 @@ namespace CapaDatos
             }
             catch (DbException ex)
             {
-                MessageBox.Show($"Error! \n\n{ex} ");
+                MessageBox.Show($"Error en CapaDatos.UsuarioLogin\n\n" + ex.Message);
                 return null;
             }
         }
@@ -94,7 +93,7 @@ namespace CapaDatos
             }
             catch (DbException ex)
             {
-                MessageBox.Show("Error no se pudo registrar\n" + ex.Message);
+                MessageBox.Show("Error en capaDatos.UsuarioRegistro\n\n" + ex.Message);
             }
 
             return usuario;
@@ -124,7 +123,7 @@ namespace CapaDatos
             }
             catch (DbException ex)
             {
-                MessageBox.Show("No se pudo mostrar las criptos: " + ex.Message);
+                MessageBox.Show("Error en capaDatos.CriptosDelUsuario\n\n" + ex.Message);
             }
         }
 
@@ -146,7 +145,7 @@ namespace CapaDatos
             }
             catch (DbException ex)
             {
-                MessageBox.Show("No se pudo vender la cripto!", ex.Message);
+                MessageBox.Show("No se pudo vender la cripto!" + ex.Message);
                 return false;
             }
         }
@@ -170,7 +169,7 @@ namespace CapaDatos
             }
             catch (DbException ex)
             {
-                MessageBox.Show("No se pudo vender la cripto!", ex.Message);
+                MessageBox.Show("No se pudo vender la cripto!" + ex.Message);
                 return false;
             }
         }
@@ -195,7 +194,7 @@ namespace CapaDatos
             }
             catch (DbException ex)
             {
-                MessageBox.Show($"No Se pudo Transferir la cripto\n\n", ex.Message);
+                MessageBox.Show($"No Se pudo Transferir la cripto\n\n" + ex.Message);
                 return false;
             }
         }
@@ -221,7 +220,7 @@ namespace CapaDatos
             }
             catch (DbException ex)
             {
-                MessageBox.Show("No se pudo obtener el ID\n\n" + ex.Message);
+                MessageBox.Show("Error en capaDatos.ObtenerIdUsuario\n\n" + ex.Message);
                 return 0;
             }
         }
@@ -244,7 +243,7 @@ namespace CapaDatos
             }
             catch (DbException ex)
             {
-                MessageBox.Show("No se pudo vender la cripto!", ex.Message);
+                MessageBox.Show("No se pudo vender la cripto!" + ex.Message);
                 return false;
             }
         }
@@ -253,18 +252,19 @@ namespace CapaDatos
         `cantidad` DECIMAL(20,10) NOT NULL,
         `fechaHora` DATETIME NOT NULL,
         `compra` TINYINT UNSIGNED,*/
-        public void HistorialUsuario(DataGridView tablaHistorialUsuario)
+        public void HistorialUsuario(string input, DataGridView tablaHistorialUsuario)
         {
             try
             {
                 Conexion objetoConectar = new Conexion();
 
-                string query = @"
+                string query = @$"
                     SELECT M.nombre, H.cantidad, H.fechaHora
                     FROM Historial H
                     JOIN Usuario U USING(idUsuario)
                     JOIN Moneda M USING(idMoneda)
-                    WHERE idUsuario = @idUsuario;
+                    WHERE idUsuario = @idUsuario
+                    AND M.nombre LIKE '%{input}%';
                 ";
 
                 tablaHistorialUsuario.DataSource = null;

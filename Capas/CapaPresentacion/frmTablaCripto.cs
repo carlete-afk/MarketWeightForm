@@ -14,6 +14,9 @@ namespace CapaPresentacion
 {
     public partial class frmTablaCripto : Form
     {
+        UsuarioCD capaDatosU = new();
+        MonedaCD capaDatosM = new();
+
         public frmTablaCripto()
         {
             InitializeComponent();
@@ -26,16 +29,12 @@ namespace CapaPresentacion
 
         private void btnMostrarCriptos_Click(object sender, EventArgs e)
         {
-            MonedaCD capaDatos = new();
-
-            capaDatos.TraerCriptos(dgvTabla);
+            capaDatosM.TraerCriptos(dgvTabla);
         }
 
         private void btnMisCriptos_Click(object sender, EventArgs e)
         {
-            UsuarioCD capaDatos = new();
-
-            capaDatos.CriptosDelUsuario(dgvTabla);
+            capaDatosU.CriptosDelUsuario(dgvTabla);
         }
 
         private void btnBuscarCripto_Click(object sender, EventArgs e)
@@ -45,9 +44,19 @@ namespace CapaPresentacion
 
         private void inputSearch_TextChanged(object sender, EventArgs e)
         {
-            MonedaCD capaDatos = new();
+            capaDatosM.BuscarCriptos(inputSearch.Text, dgvTabla);
+        }
 
-            capaDatos.BuscarCriptos(inputSearch.Text, dgvTabla);
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            frmMenuUsuario frmMenuUsuario = new();
+            frmMenuUsuario.Show();
+            Close();
+        }
+
+        private void frmTablaCripto_Load(object sender, EventArgs e)
+        {
+            capaDatosM.TraerCriptos(dgvTabla);
         }
     }
 }

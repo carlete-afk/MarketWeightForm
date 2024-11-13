@@ -50,10 +50,10 @@ namespace CapaPresentacion
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            Hide();
             frmMenuPrincipal frmMenuPrincipal = new();
-
             frmMenuPrincipal.Show();
+
+            Close();
         }
 
         private void btnRegistro_Click(object sender, EventArgs e)
@@ -79,8 +79,8 @@ namespace CapaPresentacion
 
                 if (user1 == UsuarioCE.userMain)
                 {
-                    frmTablaCripto frmTablaCripto = new frmTablaCripto();
-                    frmTablaCripto.Show();
+                    frmMenuUsuario frmMenuUsuario = new frmMenuUsuario();
+                    frmMenuUsuario.Show();
                     Hide();
 
                 } else resetInputs();
