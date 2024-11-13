@@ -7,6 +7,7 @@ using CapaEntidad;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 using System.Data;
+using System.Data.Common;
 
 namespace CapaDatos
 {
@@ -80,6 +81,49 @@ namespace CapaDatos
             {
                 MessageBox.Show("No se pudo obtener el ID: " + ex.Message);
                 return 0;
+            }
+
+        }
+
+        public MonedaCE CrearMonedaOBJ(string xnombre)
+        {
+            try
+            {
+                Conexion objetoConectar = new Conexion();
+
+                string query = $"SELECT * FROM Moneda WHERE nombre = @xnombre;";
+
+                MySqlCommand cmd = new MySqlCommand(query, objetoConectar.Conectar());
+                cmd.Parameters.AddWithValue("@xnombre", xnombre);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    MonedaCE moneda = new MonedaCE
+                    {
+                        idMoneda = reader.GetUInt32("idmoneda"),
+                        Precio = reader.GetDecimal("cantidad"),
+                        Cantidad = reader.GetDecimal("precio"),
+                        Nombre = reader.GetString("nombre")
+                    };
+
+                    reader.Close();
+                    objetoConectar.CerrarConexion();
+
+                    return moneda;
+                }
+                else
+                {
+                    reader.Close();
+                    objetoConectar.CerrarConexion();
+                    return null;
+                }
+            }
+            catch (DbException ex)
+            {
+                MessageBox.Show($"Error! \n\n{ex} ");
+                return null;
             }
         }
     }

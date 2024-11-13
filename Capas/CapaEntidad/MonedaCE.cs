@@ -8,7 +8,7 @@ namespace CapaEntidad
 {
     public class MonedaCE
     {
-        public int idMoneda { get; set; }
+        public uint idMoneda { get; set; }
         public required decimal Precio { get; set; }
         public required decimal Cantidad { get; set; }
         public required string Nombre { get; set; }

@@ -16,27 +16,28 @@ BEGIN
 END $$
 
 DROP PROCEDURE IF EXISTS ComprarMoneda $$
-CREATE PROCEDURE `ComprarMoneda`(xidusuario INT UNSIGNED, xcantidad DECIMAL(20,10), xidmoneda INT UNSIGNED)
+CREATE PROCEDURE `ComprarMoneda`(xidusuario INT UNSIGNED, xcantidad DECIMAL(20,10), xnombre VARCHAR(45))
 BEGIN
-       IF (PuedeComprar(xidUsuario, xcantidad, xidmoneda))
+
+       IF (PuedeComprar(xidUsuario, xcantidad, ObtenerIdMoneda(xnombre)))
        THEN 
               IF (NOT (EXISTS (
                      SELECT *
                      FROM `UsuarioMoneda`
-                     WHERE `idMoneda` = xidmoneda AND `idUsuario` = xidusuario
+                     WHERE `idMoneda` = ObtenerIdMoneda(xnombre) AND `idUsuario` = xidusuario
                      )))
                      THEN 
                             INSERT INTO `UsuarioMoneda` (`idUsuario`, `idMoneda`, cantidad)
-                            VALUES(xidusuario, xidmoneda, 0);
+                            VALUES(xidusuario, ObtenerIdMoneda(xnombre), 0);
               END IF;
 
               UPDATE UsuarioMoneda
               SET cantidad = cantidad + xcantidad
-              WHERE idMoneda = xidmoneda
+              WHERE idMoneda = ObtenerIdMoneda(xnombre)
               AND idUsuario = xidusuario;
 
               INSERT INTO Historial (idMoneda, cantidad, fechaHora, compra, idUsuario)
-              VALUES (xidmoneda, xcantidad, NOW(), TRUE, xidusuario);
+              VALUES (ObtenerIdMoneda(xnombre), xcantidad, NOW(), TRUE, xidusuario);
        ELSE
             SIGNAL SQLSTATE '45000'
             SET MESSAGE_TEXT = "Saldo Insuficiente!";
@@ -52,22 +53,22 @@ BEGIN
 END $$
 
 DROP PROCEDURE IF EXISTS VenderMoneda $$
-CREATE PROCEDURE `VenderMoneda`(xidusuario INT UNSIGNED, xcantidad DECIMAL(20,10), xidmoneda INT UNSIGNED)
+CREATE PROCEDURE `VenderMoneda`(xidusuario INT UNSIGNED, xcantidad DECIMAL(20,10), xnombre VARCHAR(45))
 BEGIN
        SELECT cantidad INTO @xcantidad
        FROM `UsuarioMoneda`
-       WHERE `idMoneda` = xidmoneda AND `idUsuario` = xidusuario;
+       WHERE `idMoneda` = ObtenerIdMoneda(xnombre) AND `idUsuario` = xidusuario;
 
 
        IF(@xcantidad >= xcantidad)
        THEN
               UPDATE UsuarioMoneda
               SET cantidad = cantidad - xcantidad
-              WHERE idMoneda = xidmoneda
+              WHERE idMoneda = ObtenerIdMoneda(xnombre)
               AND idUsuario = xidusuario;
 
               INSERT INTO Historial (idMoneda, cantidad, fechaHora, compra, idUsuario)
-              VALUES (xidmoneda, xcantidad, NOW(), FALSE, xidusuario);
+              VALUES (ObtenerIdMoneda(xnombre), xcantidad, NOW(), FALSE, xidusuario);
        ELSE
               SIGNAL SQLSTATE '45000'
               SET MESSAGE_TEXT = "Cantidad Insuficiente!";

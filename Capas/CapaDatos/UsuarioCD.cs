@@ -128,7 +128,7 @@ namespace CapaDatos
             }
         }
 
-        internal bool CompraCripto(MonedaCE MonedaE, UsuarioCE usuarioE, decimal cantidad)
+        internal bool CompraCripto(string nombreMoneda, UsuarioCE usuarioE, decimal cantidad)
         {
             try
             {
@@ -138,7 +138,7 @@ namespace CapaDatos
 
                 cmd.Parameters.AddWithValue("xidusuario", usuarioE.idUsuario);
                 cmd.Parameters.AddWithValue("xcantidad", cantidad);
-                cmd.Parameters.AddWithValue("xidmoneda", MonedaE.idMoneda);
+                cmd.Parameters.AddWithValue("xnombre", nombreMoneda);
 
                 int rowsAffected = cmd.ExecuteNonQuery();
 
@@ -151,7 +151,7 @@ namespace CapaDatos
             }
         }
 
-        internal bool VenderCripto(MonedaCE MonedaE, UsuarioCE usuarioE, decimal cantidad)
+        internal bool VenderCripto(string nombreMoneda, UsuarioCE usuarioE, decimal cantidad)
         {
             try
             {
@@ -161,7 +161,7 @@ namespace CapaDatos
 
                 cmd.Parameters.AddWithValue("xidusuario", usuarioE.idUsuario);
                 cmd.Parameters.AddWithValue("xcantidad", cantidad);
-                cmd.Parameters.AddWithValue("xidmoneda", MonedaE.idMoneda);
+                cmd.Parameters.AddWithValue("xnombre", nombreMoneda);
 
                 int rowsAffected = cmd.ExecuteNonQuery();
 
@@ -218,6 +218,28 @@ namespace CapaDatos
             {
                 MessageBox.Show("No se pudo obtener el ID: " + ex.Message);
                 return 0;
+            }
+        }
+
+        public bool IngresarDinero(UsuarioCE usuario, decimal saldo)
+        {
+            try
+            {
+                Conexion conexion = new();
+                MySqlCommand cmd = new MySqlCommand("IngresarDinero", conexion.Conectar());
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("xidusuario", usuario.idUsuario);
+                cmd.Parameters.AddWithValue("xsaldo", saldo);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (DbException ex)
+            {
+                MessageBox.Show("No se pudo vender la cripto!", ex.Message);
+                return false;
             }
         }
 
