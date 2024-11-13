@@ -128,7 +128,7 @@ namespace CapaDatos
             }
         }
 
-        internal bool CompraCripto(string nombreMoneda, UsuarioCE usuarioE, decimal cantidad)
+        public bool CompraCripto(string nombreMoneda, UsuarioCE usuarioE, decimal cantidad)
         {
             try
             {
@@ -151,7 +151,7 @@ namespace CapaDatos
             }
         }
 
-        internal bool VenderCripto(string nombreMoneda, UsuarioCE usuarioE, decimal cantidad)
+        public bool VenderCripto(string nombreMoneda, UsuarioCE usuarioE, decimal cantidad)
         {
             try
             {
@@ -176,7 +176,7 @@ namespace CapaDatos
         }
 
 
-        internal bool TransferirCripto(MonedaCE MonedaE, UsuarioCE usuarioE, decimal cantidad, string emailUsuarioTransferido)
+        public bool TransferirCripto(MonedaCE MonedaE, UsuarioCE usuarioE, decimal cantidad, string emailUsuarioTransferido)
         {
             try
             {
