@@ -27,3 +27,5 @@ CALL IngresarDinero(3, 10000);
 CALL ComprarMoneda(1, 2, 'Bitcoin');
 CALL ComprarMoneda(1, 2, 'Cardano');
 CALL ComprarMoneda(1, 2, 'Ripple');
+
+CALL Transferencia('Bitcoin', 0.5, 1, 5);

@@ -176,7 +176,7 @@ namespace CapaDatos
         }
 
 
-        public bool TransferirCripto(MonedaCE MonedaE, UsuarioCE usuarioE, decimal cantidad, string emailUsuarioTransferido)
+        public bool TransferirCripto(string nombreMoneda, UsuarioCE usuarioE, decimal cantidad, string emailUsuarioTransferido)
         {
             try
             {
@@ -184,7 +184,7 @@ namespace CapaDatos
                 MySqlCommand cmd = new MySqlCommand("Transferencia", conexion.Conectar());
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("xidmoneda", MonedaE.idMoneda);
+                cmd.Parameters.AddWithValue("xidmoneda", nombreMoneda);
                 cmd.Parameters.AddWithValue("xcantidad", cantidad);
                 cmd.Parameters.AddWithValue("xidUsuarioTransfiere", usuarioE.idUsuario);
                 cmd.Parameters.AddWithValue("xidUsuarioTransferido", ObtenerIdUsuario(emailUsuarioTransferido));

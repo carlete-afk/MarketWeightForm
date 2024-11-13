@@ -85,18 +85,18 @@ BEGIN
 END $$
 
 DROP PROCEDURE IF EXISTS Transferencia $$
-CREATE PROCEDURE `Transferencia`(xidMoneda INT UNSIGNED, xCantidad DECIMAL(20,10) UNSIGNED, xidUsuarioTransfiere INT UNSIGNED, xidUsuarioTransferido INT UNSIGNED)
+CREATE PROCEDURE `Transferencia`(xnombre VARCHAR(45), xCantidad DECIMAL(20,10) UNSIGNED, xidUsuarioTransfiere INT UNSIGNED, xidUsuarioTransferido INT UNSIGNED)
 BEGIN
        START TRANSACTION;
-       IF (PuedeVender(xidUsuarioTransfiere, xCantidad, xidMoneda))
+       IF (PuedeVender(xidUsuarioTransfiere, xCantidad, ObtenerIdMoneda(xnombre)))
        THEN
               UPDATE UsuarioMoneda
               SET cantidad = cantidad - xCantidad
-              WHERE idMoneda = xidMoneda
+              WHERE idMoneda = ObtenerIdMoneda(xnombre)
               AND idUsuario = xidUsuarioTransfiere;
 
               INSERT INTO Historial (idMoneda, cantidad, fechaHora, compra, idUsuario)
-              VALUES (xidMoneda, xCantidad, NOW(), NULL, xidUsuarioTransfiere);
+              VALUES (ObtenerIdMoneda(xnombre), (xCantidad * -1), NOW(), NULL, xidUsuarioTransfiere);
        ELSE
               SIGNAL SQLSTATE '45000'
               SET MESSAGE_TEXT = "Cantidad Insuficiente!";
@@ -105,20 +105,20 @@ BEGIN
        IF (NOT (EXISTS (
                      SELECT *
                      FROM `UsuarioMoneda`
-                     WHERE `idMoneda` = xidMoneda AND `idUsuario` = xidUsuarioTransferido
+                     WHERE `idMoneda` = ObtenerIdMoneda(xnombre) AND `idUsuario` = xidUsuarioTransferido
                      )))
                      THEN 
                             INSERT INTO `UsuarioMoneda` (`idUsuario`, `idMoneda`, cantidad)
-                            VALUES(xidUsuarioTransferido, xidMoneda, 0);
+                            VALUES(xidUsuarioTransferido, ObtenerIdMoneda(xnombre), 0);
        END IF;
 
 
               UPDATE UsuarioMoneda
               SET cantidad = cantidad + xCantidad
-              WHERE idMoneda = xidMoneda
+              WHERE idMoneda = ObtenerIdMoneda(xnombre)
               AND idUsuario = xidUsuarioTransferido;
 
               INSERT INTO Historial (idMoneda, cantidad, fechaHora, compra, idUsuario)
-              VALUES (xidMoneda, (xCantidad * -1), NOW(), NULL, xidUsuarioTransferido);
+              VALUES (ObtenerIdMoneda(xnombre), xcantidad, NOW(), NULL, xidUsuarioTransferido);
        COMMIT;
 END $$
