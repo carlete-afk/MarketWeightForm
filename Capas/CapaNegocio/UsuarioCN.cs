@@ -17,7 +17,7 @@ namespace CapaNegocio
         {
             UsuarioCD capaDatos = new UsuarioCD();
             
-            int id = capaDatos.ObtenerIdUsuario(user);
+            int id = capaDatos.ObtenerIdUsuario(user.Email);
 
             return id;
         }

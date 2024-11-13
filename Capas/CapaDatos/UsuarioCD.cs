@@ -1,8 +1,10 @@
 ﻿using CapaEntidad;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.Data.Common;
 using System.Security.Cryptography;
 using System.Text;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace CapaDatos
 {
@@ -65,7 +67,7 @@ namespace CapaDatos
                     return null;
                 }
             }
-            catch (Exception ex)
+            catch (DbException ex)
             {
                 MessageBox.Show($"Error! \n\n{ex} ");
                 return null;
@@ -90,7 +92,7 @@ namespace CapaDatos
                 UsuarioCE.userMain = usuario;
 
             }
-            catch (Exception ex)
+            catch (DbException ex)
             {
                 MessageBox.Show("Error no se pudo registrar\n" + ex.Message);
             }
@@ -120,7 +122,7 @@ namespace CapaDatos
 
                 objetoConectar.CerrarConexion();
             }
-            catch (Exception ex)
+            catch (DbException ex)
             {
                 MessageBox.Show("No se pudo mostrar las criptos: " + ex.Message);
             }
@@ -142,8 +144,9 @@ namespace CapaDatos
 
                 return true;
             }
-            catch (Exception)
+            catch (DbException ex)
             {
+                MessageBox.Show("No se pudo vender la cripto!", ex.Message);
                 return false;
             }
         }
@@ -165,8 +168,9 @@ namespace CapaDatos
 
                 return true;
             }
-            catch (Exception)
+            catch (DbException ex)
             {
+                MessageBox.Show("No se pudo vender la cripto!", ex.Message);
                 return false;
             }
         }
@@ -180,21 +184,23 @@ namespace CapaDatos
                 MySqlCommand cmd = new MySqlCommand("Transferencia", conexion.Conectar());
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("xidusuario", usuarioE.idUsuario);
-                cmd.Parameters.AddWithValue("xcantidad", cantidad);
                 cmd.Parameters.AddWithValue("xidmoneda", MonedaE.idMoneda);
+                cmd.Parameters.AddWithValue("xcantidad", cantidad);
+                cmd.Parameters.AddWithValue("xidUsuarioTransfiere", usuarioE.idUsuario);
+                cmd.Parameters.AddWithValue("xidUsuarioTransferido", ObtenerIdUsuario(emailUsuarioTransferido));
 
                 int rowsAffected = cmd.ExecuteNonQuery();
 
                 return true;
             }
-            catch (Exception)
+            catch (DbException ex)
             {
+                MessageBox.Show($"No Se pudo Transferir la cripto\n\n", ex.Message);
                 return false;
             }
         }
 
-        public int ObtenerIdUsuario(UsuarioCE usuario)
+        public int ObtenerIdUsuario(string email)
         {
             try
             {
@@ -202,13 +208,13 @@ namespace CapaDatos
                 MySqlCommand cmd = new MySqlCommand("ObtenerIdUsuario", conexion.Conectar());
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("xemail", usuario.Email);
+                cmd.Parameters.AddWithValue("xemail", email);
                 var resultado = cmd.ExecuteScalar();
 
                 return Convert.ToInt32(resultado);
             }
 
-            catch (Exception ex)
+            catch (DbException ex)
             {
                 MessageBox.Show("No se pudo obtener el ID: " + ex.Message);
                 return 0;
