@@ -36,6 +36,7 @@
             btnTablaCripto = new Button();
             btnCerrarSesion = new Button();
             btnHistorial = new Button();
+            lblSaldo = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -44,7 +45,7 @@
             titulo.AutoSize = true;
             titulo.Font = new Font("Sitka Small", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             titulo.ForeColor = Color.White;
-            titulo.Location = new Point(12, 43);
+            titulo.Location = new Point(12, 32);
             titulo.Name = "titulo";
             titulo.Size = new Size(274, 71);
             titulo.TabIndex = 1;
@@ -116,12 +117,25 @@
             btnHistorial.UseVisualStyleBackColor = true;
             btnHistorial.Click += btnHistorial_Click;
             // 
+            // lblSaldo
+            // 
+            lblSaldo.AutoSize = true;
+            lblSaldo.Font = new Font("Microsoft Tai Le", 12F);
+            lblSaldo.ForeColor = Color.White;
+            lblSaldo.Location = new Point(12, 114);
+            lblSaldo.Name = "lblSaldo";
+            lblSaldo.Size = new Size(121, 21);
+            lblSaldo.TabIndex = 32;
+            lblSaldo.Text = "Tu saldo es de 0";
+            lblSaldo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // frmMenuUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SlateGray;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblSaldo);
             Controls.Add(btnHistorial);
             Controls.Add(btnCerrarSesion);
             Controls.Add(btnTablaCripto);
@@ -146,5 +160,6 @@
         private Button btnTablaCripto;
         private Button btnCerrarSesion;
         private Button btnHistorial;
+        private Label lblSaldo;
     }
 }

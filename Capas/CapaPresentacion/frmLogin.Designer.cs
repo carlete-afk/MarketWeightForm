@@ -45,7 +45,7 @@
             lblPassword.AutoSize = true;
             lblPassword.Font = new Font("Microsoft Tai Le", 12F);
             lblPassword.ForeColor = Color.White;
-            lblPassword.Location = new Point(271, 169);
+            lblPassword.Location = new Point(131, 223);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(89, 21);
             lblPassword.TabIndex = 24;
@@ -54,9 +54,9 @@
             // inputPassword
             // 
             inputPassword.Font = new Font("Microsoft Tai Le", 12F);
-            inputPassword.Location = new Point(271, 195);
+            inputPassword.Location = new Point(131, 249);
             inputPassword.Name = "inputPassword";
-            inputPassword.Size = new Size(179, 28);
+            inputPassword.Size = new Size(222, 28);
             inputPassword.TabIndex = 23;
             // 
             // pictureBox1
@@ -73,7 +73,7 @@
             // btnLogin
             // 
             btnLogin.Font = new Font("Sitka Text", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnLogin.Location = new Point(162, 266);
+            btnLogin.Location = new Point(159, 299);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(159, 37);
             btnLogin.TabIndex = 21;
@@ -86,7 +86,7 @@
             lblEmail.AutoSize = true;
             lblEmail.Font = new Font("Microsoft Tai Le", 12F);
             lblEmail.ForeColor = Color.White;
-            lblEmail.Location = new Point(43, 169);
+            lblEmail.Location = new Point(131, 152);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(54, 21);
             lblEmail.TabIndex = 18;
@@ -96,9 +96,9 @@
             // inputEmail
             // 
             inputEmail.Font = new Font("Microsoft Tai Le", 12F);
-            inputEmail.Location = new Point(43, 195);
+            inputEmail.Location = new Point(131, 178);
             inputEmail.Name = "inputEmail";
-            inputEmail.Size = new Size(179, 28);
+            inputEmail.Size = new Size(222, 28);
             inputEmail.TabIndex = 17;
             // 
             // titulo

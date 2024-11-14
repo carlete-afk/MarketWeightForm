@@ -180,10 +180,10 @@ namespace CapaDatos
             try
             {
                 Conexion conexion = new();
-                MySqlCommand cmd = new MySqlCommand("Transferencia", conexion.Conectar());
+                MySqlCommand cmd = new("Transferencia", conexion.Conectar());
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("xidmoneda", nombreMoneda);
+                cmd.Parameters.AddWithValue("xnombre", nombreMoneda);
                 cmd.Parameters.AddWithValue("xcantidad", cantidad);
                 cmd.Parameters.AddWithValue("xidUsuarioTransfiere", usuarioE.idUsuario);
                 cmd.Parameters.AddWithValue("xidUsuarioTransferido", ObtenerIdUsuario(emailUsuarioTransferido));

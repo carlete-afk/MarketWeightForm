@@ -37,6 +37,7 @@
             btnConfirmar = new Button();
             btnVolver = new Button();
             lblCriptoActual = new Label();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvTabla).BeginInit();
             SuspendLayout();
             // 
@@ -56,7 +57,7 @@
             lblCantidad.AutoSize = true;
             lblCantidad.Font = new Font("Microsoft Tai Le", 12F);
             lblCantidad.ForeColor = Color.White;
-            lblCantidad.Location = new Point(103, 168);
+            lblCantidad.Location = new Point(67, 147);
             lblCantidad.Name = "lblCantidad";
             lblCantidad.Size = new Size(72, 21);
             lblCantidad.TabIndex = 28;
@@ -65,9 +66,9 @@
             // inputCantidad
             // 
             inputCantidad.Font = new Font("Microsoft Tai Le", 12F);
-            inputCantidad.Location = new Point(103, 194);
+            inputCantidad.Location = new Point(67, 171);
             inputCantidad.Name = "inputCantidad";
-            inputCantidad.Size = new Size(179, 28);
+            inputCantidad.Size = new Size(248, 28);
             inputCantidad.TabIndex = 27;
             // 
             // lblEmail
@@ -75,7 +76,7 @@
             lblEmail.AutoSize = true;
             lblEmail.Font = new Font("Microsoft Tai Le", 12F);
             lblEmail.ForeColor = Color.White;
-            lblEmail.Location = new Point(103, 244);
+            lblEmail.Location = new Point(67, 223);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(190, 21);
             lblEmail.TabIndex = 26;
@@ -84,9 +85,9 @@
             // inputEmail
             // 
             inputEmail.Font = new Font("Microsoft Tai Le", 12F);
-            inputEmail.Location = new Point(103, 268);
+            inputEmail.Location = new Point(67, 247);
             inputEmail.Name = "inputEmail";
-            inputEmail.Size = new Size(179, 28);
+            inputEmail.Size = new Size(248, 28);
             inputEmail.TabIndex = 25;
             // 
             // dgvTabla
@@ -135,12 +136,24 @@
             lblCriptoActual.TabIndex = 34;
             lblCriptoActual.Text = "ejemplo";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Microsoft Tai Le", 12F);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(85, 310);
+            label1.Name = "label1";
+            label1.Size = new Size(218, 21);
+            label1.TabIndex = 35;
+            label1.Text = "Selecciona la cripto en la tabla";
+            // 
             // frmTransferencia
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SlateGray;
             ClientSize = new Size(800, 450);
+            Controls.Add(label1);
             Controls.Add(lblCriptoActual);
             Controls.Add(btnVolver);
             Controls.Add(btnConfirmar);
@@ -169,5 +182,6 @@
         private Button btnConfirmar;
         private Button btnVolver;
         private Label lblCriptoActual;
+        private Label label1;
     }
 }

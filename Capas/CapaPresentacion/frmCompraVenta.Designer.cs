@@ -37,6 +37,7 @@
             label1 = new Label();
             lblCriptoActual = new Label();
             btnVolver = new Button();
+            lblSaldo = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvTabla).BeginInit();
             SuspendLayout();
             // 
@@ -57,10 +58,10 @@
             dgvTabla.AllowUserToDeleteRows = false;
             dgvTabla.BackgroundColor = Color.LightSteelBlue;
             dgvTabla.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvTabla.Location = new Point(342, 12);
+            dgvTabla.Location = new Point(342, 60);
             dgvTabla.Name = "dgvTabla";
             dgvTabla.ReadOnly = true;
-            dgvTabla.Size = new Size(446, 426);
+            dgvTabla.Size = new Size(446, 378);
             dgvTabla.TabIndex = 19;
             dgvTabla.CellMouseClick += dgvTabla_CellMouseClick;
             // 
@@ -110,7 +111,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Tai Le", 12F);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(61, 301);
+            label1.Location = new Point(59, 310);
             label1.Name = "label1";
             label1.Size = new Size(218, 21);
             label1.TabIndex = 28;
@@ -139,12 +140,25 @@
             btnVolver.UseVisualStyleBackColor = true;
             btnVolver.Click += btnVolver_Click;
             // 
+            // lblSaldo
+            // 
+            lblSaldo.AutoSize = true;
+            lblSaldo.Font = new Font("Microsoft Tai Le", 12F);
+            lblSaldo.ForeColor = Color.White;
+            lblSaldo.Location = new Point(342, 23);
+            lblSaldo.Name = "lblSaldo";
+            lblSaldo.Size = new Size(121, 21);
+            lblSaldo.TabIndex = 31;
+            lblSaldo.Text = "Tu saldo es de 0";
+            lblSaldo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // frmCompraVenta
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SlateGray;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblSaldo);
             Controls.Add(btnVolver);
             Controls.Add(lblCriptoActual);
             Controls.Add(label1);
@@ -173,5 +187,6 @@
         private Label label1;
         private Label lblCriptoActual;
         private Button btnVolver;
+        private Label lblSaldo;
     }
 }

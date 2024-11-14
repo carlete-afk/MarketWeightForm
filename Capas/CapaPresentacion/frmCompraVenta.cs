@@ -26,9 +26,6 @@ namespace CapaPresentacion
 
         private void CambiarCompraVenta(bool compra)
         {
-
-
-
             if (_compra)
             {
                 lblCompraVenta.Text = "Comprando";
@@ -64,6 +61,7 @@ namespace CapaPresentacion
         private void frmCompraVenta_Load(object sender, EventArgs e)
         {
             capaDatosM.TraerCriptos(dgvTabla);
+            lblSaldo.Text = $"Tu saldo es de {UsuarioCE.userMain.Saldo.ToString("F3")} USDT.";
             lblCriptoActual.Text = "";
         }
 
@@ -100,6 +98,7 @@ namespace CapaPresentacion
 
                     inputCantidad.Text = "";
                     capaDatosM.TraerCriptos(dgvTabla);
+                    lblSaldo.Text = $"Tu saldo es de {UsuarioCE.userMain.Saldo.ToString("F3")} USDT.";
                 }
 
                 catch (Exception ex)
@@ -118,6 +117,7 @@ namespace CapaPresentacion
 
                     inputCantidad.Text = "";
                     capaDatosU.CriptosDelUsuario(dgvTabla);
+                    lblSaldo.Text = $"Tu saldo es de {UsuarioCE.userMain.Saldo.ToString("F3")} USDT.";
                 }
 
                 catch (Exception ex)

@@ -21,6 +21,7 @@ namespace CapaPresentacion
         private void MenuUsuario_Load(object sender, EventArgs e)
         {
             titulo.Text = $"Buen día {UsuarioCE.userMain.Nombre}!";
+            lblSaldo.Text = $"Tu saldo es de {UsuarioCE.userMain.Saldo.ToString("F3")} USDT.";
         }
 
         private void btnCompraVenta_Click(object sender, EventArgs e)

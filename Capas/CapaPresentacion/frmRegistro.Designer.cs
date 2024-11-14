@@ -49,7 +49,7 @@
             titulo.AutoSize = true;
             titulo.Font = new Font("Sitka Small", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             titulo.ForeColor = Color.White;
-            titulo.Location = new Point(58, 46);
+            titulo.Location = new Point(33, 44);
             titulo.Name = "titulo";
             titulo.Size = new Size(245, 71);
             titulo.TabIndex = 1;
@@ -59,9 +59,9 @@
             // inputNombre
             // 
             inputNombre.Font = new Font("Microsoft Tai Le", 12F);
-            inputNombre.Location = new Point(58, 172);
+            inputNombre.Location = new Point(33, 172);
             inputNombre.Name = "inputNombre";
-            inputNombre.Size = new Size(179, 28);
+            inputNombre.Size = new Size(200, 28);
             inputNombre.TabIndex = 2;
             inputNombre.TextChanged += inputNombre_TextChanged;
             // 
@@ -70,7 +70,7 @@
             lblNombre.AutoSize = true;
             lblNombre.Font = new Font("Microsoft Tai Le", 12F);
             lblNombre.ForeColor = Color.White;
-            lblNombre.Location = new Point(58, 146);
+            lblNombre.Location = new Point(33, 146);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(68, 21);
             lblNombre.TabIndex = 3;
@@ -82,7 +82,7 @@
             lblEmail.AutoSize = true;
             lblEmail.Font = new Font("Microsoft Tai Le", 12F);
             lblEmail.ForeColor = Color.White;
-            lblEmail.Location = new Point(58, 256);
+            lblEmail.Location = new Point(33, 238);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(54, 21);
             lblEmail.TabIndex = 5;
@@ -92,15 +92,15 @@
             // inputMail
             // 
             inputMail.Font = new Font("Microsoft Tai Le", 12F);
-            inputMail.Location = new Point(58, 282);
+            inputMail.Location = new Point(33, 264);
             inputMail.Name = "inputMail";
-            inputMail.Size = new Size(179, 28);
+            inputMail.Size = new Size(200, 28);
             inputMail.TabIndex = 4;
             // 
             // btnRegistro
             // 
             btnRegistro.Font = new Font("Sitka Text", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnRegistro.Location = new Point(295, 349);
+            btnRegistro.Location = new Point(296, 337);
             btnRegistro.Name = "btnRegistro";
             btnRegistro.Size = new Size(159, 37);
             btnRegistro.TabIndex = 10;
@@ -124,7 +124,7 @@
             lblPassword.AutoSize = true;
             lblPassword.Font = new Font("Microsoft Tai Le", 12F);
             lblPassword.ForeColor = Color.White;
-            lblPassword.Location = new Point(275, 256);
+            lblPassword.Location = new Point(255, 238);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(89, 21);
             lblPassword.TabIndex = 15;
@@ -133,9 +133,9 @@
             // inputPassword
             // 
             inputPassword.Font = new Font("Microsoft Tai Le", 12F);
-            inputPassword.Location = new Point(275, 282);
+            inputPassword.Location = new Point(255, 264);
             inputPassword.Name = "inputPassword";
-            inputPassword.Size = new Size(179, 28);
+            inputPassword.Size = new Size(200, 28);
             inputPassword.TabIndex = 14;
             // 
             // lblApellido
@@ -143,7 +143,7 @@
             lblApellido.AutoSize = true;
             lblApellido.Font = new Font("Microsoft Tai Le", 12F);
             lblApellido.ForeColor = Color.White;
-            lblApellido.Location = new Point(275, 146);
+            lblApellido.Location = new Point(255, 146);
             lblApellido.Name = "lblApellido";
             lblApellido.Size = new Size(67, 21);
             lblApellido.TabIndex = 17;
@@ -152,9 +152,9 @@
             // inputApellido
             // 
             inputApellido.Font = new Font("Microsoft Tai Le", 12F);
-            inputApellido.Location = new Point(275, 172);
+            inputApellido.Location = new Point(255, 172);
             inputApellido.Name = "inputApellido";
-            inputApellido.Size = new Size(179, 28);
+            inputApellido.Size = new Size(200, 28);
             inputApellido.TabIndex = 16;
             // 
             // btnVolver
