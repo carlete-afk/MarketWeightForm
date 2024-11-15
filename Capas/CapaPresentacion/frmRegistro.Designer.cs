@@ -135,6 +135,7 @@
             inputPassword.Font = new Font("Microsoft Tai Le", 12F);
             inputPassword.Location = new Point(255, 264);
             inputPassword.Name = "inputPassword";
+            inputPassword.PasswordChar = '●';
             inputPassword.Size = new Size(200, 28);
             inputPassword.TabIndex = 14;
             // 

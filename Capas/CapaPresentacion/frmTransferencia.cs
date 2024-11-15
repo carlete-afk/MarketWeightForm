@@ -52,9 +52,9 @@ namespace CapaPresentacion
 
             try
             {
-                if (x == false)
+                if (x == false || string.IsNullOrWhiteSpace(inputCantidad.Text) || string.IsNullOrWhiteSpace(inputEmail.Text))
                 {
-                    MessageBox.Show("Selecciona una cripto en la tabla!");
+                    MessageBox.Show("Recuerda:\nSelecciona una cripto en la tabla.\nColoca un email válido\nEstablecer el monto.", "Error!");
                 }
 
                 else

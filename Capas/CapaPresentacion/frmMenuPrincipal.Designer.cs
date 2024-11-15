@@ -33,6 +33,7 @@
             btnLogin = new Button();
             pictureBox1 = new PictureBox();
             btnRegistro = new Button();
+            btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -46,7 +47,6 @@
             titulo.Size = new Size(394, 71);
             titulo.TabIndex = 0;
             titulo.Text = "MarketWeight";
-            titulo.Click += label1_Click;
             // 
             // btnLogin
             // 
@@ -81,19 +81,31 @@
             btnRegistro.UseVisualStyleBackColor = true;
             btnRegistro.Click += btnRegistro_Click;
             // 
+            // btnSalir
+            // 
+            btnSalir.Font = new Font("Sitka Text", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSalir.Location = new Point(674, 409);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(114, 29);
+            btnSalir.TabIndex = 28;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
+            // 
             // frmMenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SlateGray;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnSalir);
             Controls.Add(pictureBox1);
             Controls.Add(btnLogin);
             Controls.Add(btnRegistro);
             Controls.Add(titulo);
+            KeyPreview = true;
             Name = "frmMenuPrincipal";
             Text = "MarketWeight";
-            Load += MenuPrincipal_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -105,5 +117,6 @@
         private Button btnLogin;
         private PictureBox pictureBox1;
         private Button btnRegistro;
+        private Button btnSalir;
     }
 }

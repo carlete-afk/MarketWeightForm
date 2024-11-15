@@ -81,11 +81,17 @@ namespace CapaPresentacion
                 {
                     frmMenuUsuario frmMenuUsuario = new frmMenuUsuario();
                     frmMenuUsuario.Show();
-                    Hide();
+                    Close();
 
                 } else resetInputs();
 
-            } else MessageBox.Show("Completa todos los campos!");
+            }
+            
+            else
+            {
+                MessageBox.Show("Completa todos los campos!");
+                resetInputs();
+            }
 
             
 

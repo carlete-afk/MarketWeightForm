@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaDatos;
 using CapaEntidad;
 
 namespace CapaPresentacion
@@ -20,8 +21,11 @@ namespace CapaPresentacion
 
         private void MenuUsuario_Load(object sender, EventArgs e)
         {
+            UsuarioCD capaDatos = new();
+
             titulo.Text = $"Buen día {UsuarioCE.userMain.Nombre}!";
-            lblSaldo.Text = $"Tu saldo es de {UsuarioCE.userMain.Saldo.ToString("F3")} USDT.";
+            capaDatos.ActualizarSaldo();
+            lblSaldo.Text = $"Tu saldo es de {UsuarioCE.userMain.Saldo:F3} USDT.";
         }
 
         private void btnCompraVenta_Click(object sender, EventArgs e)
@@ -56,6 +60,13 @@ namespace CapaPresentacion
         {
             frmHistorialUsuario frmHistorialUsuario = new();
             frmHistorialUsuario.Show();
+            Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmDepositoUsuario frmDepositoUsuario = new();
+            frmDepositoUsuario.Show();
             Close();
         }
     }

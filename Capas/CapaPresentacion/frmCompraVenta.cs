@@ -1,21 +1,12 @@
 ﻿using CapaDatos;
 using CapaEntidad;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace CapaPresentacion
 {
     public partial class frmCompraVenta : Form
     {
-        private bool _compra = true;
+        bool compra = true;
+        bool click = false;
         MonedaCD capaDatosM = new();
         UsuarioCD capaDatosU = new();
 
@@ -26,7 +17,7 @@ namespace CapaPresentacion
 
         private void CambiarCompraVenta(bool compra)
         {
-            if (_compra)
+            if (compra)
             {
                 lblCompraVenta.Text = "Comprando";
                 btnCambiarTransaccion.Text = "Cambiar a Venta";
@@ -60,15 +51,17 @@ namespace CapaPresentacion
 
         private void frmCompraVenta_Load(object sender, EventArgs e)
         {
-            capaDatosM.TraerCriptos(dgvTabla);
-            lblSaldo.Text = $"Tu saldo es de {UsuarioCE.userMain.Saldo.ToString("F3")} USDT.";
             lblCriptoActual.Text = "";
+            capaDatosM.TraerCriptos(dgvTabla);
+            capaDatosU.ActualizarSaldo();
+            lblSaldo.Text = $"Tu saldo es de {UsuarioCE.userMain.Saldo:F3} USDT.";
+            dgvTabla.ClearSelection();
         }
 
         private void btnCambiarTransaccion_Click(object sender, EventArgs e)
         {
-            _compra = !_compra;
-            CambiarCompraVenta(_compra);
+            compra = !compra;
+            CambiarCompraVenta(compra);
 
         }
 
@@ -76,55 +69,70 @@ namespace CapaPresentacion
         {
 
             if (e.ColumnIndex == 0 && e.RowIndex > -1)
+            {
+                click = true;
                 lblCriptoActual.Text = dgvTabla.CurrentCell.Value.ToString();
+            }
 
 
             else
+            {
                 dgvTabla.ClearSelection();
+            }
 
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             UsuarioCD capaDatos = new();
+            string celda = dgvTabla.CurrentCell.Value.ToString();
 
-            if (_compra)
+            if (click && string.IsNullOrWhiteSpace(inputCantidad.Text) == false)
             {
-                try
+                if (compra)
                 {
-                    capaDatos.CompraCripto(dgvTabla.CurrentCell.Value.ToString(), UsuarioCE.userMain, Convert.ToDecimal(inputCantidad.Text));
+                    try
+                    {
+                        capaDatos.CompraCripto(celda, UsuarioCE.userMain, Convert.ToDecimal(inputCantidad.Text));
 
-                    MessageBox.Show("Compra realizada con éxito!");
+                        MessageBox.Show("Compra realizada con éxito!");
 
-                    inputCantidad.Text = "";
-                    capaDatosM.TraerCriptos(dgvTabla);
-                    lblSaldo.Text = $"Tu saldo es de {UsuarioCE.userMain.Saldo.ToString("F3")} USDT.";
+                        inputCantidad.Text = "";
+                        capaDatosM.TraerCriptos(dgvTabla);
+                        capaDatosU.ActualizarSaldo();
+                        lblSaldo.Refresh();
+                    }
+
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Cantidad: {inputCantidad.Text}\nCelda: {celda}\n\n" + ex.Message, "Error!");
+                    }
                 }
 
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Error!\n\n" + ex.Message);
+                    try
+                    {
+                        capaDatos.VenderCripto(celda, UsuarioCE.userMain, Convert.ToDecimal(inputCantidad.Text));
+
+                        MessageBox.Show("Venta realizada con éxito!");
+
+                        inputCantidad.Text = "";
+                        capaDatosU.CriptosDelUsuario(dgvTabla);
+                        capaDatosU.ActualizarSaldo();
+                        lblSaldo.Refresh();
+                    }
+
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error!\n\n" + ex.Message);
+                    }
                 }
             }
 
             else
             {
-                try
-                {
-                    capaDatos.VenderCripto(dgvTabla.CurrentCell.Value.ToString(), UsuarioCE.userMain, Convert.ToDecimal(inputCantidad.Text));
-
-                    MessageBox.Show("Venta realizada con éxito!");
-
-                    inputCantidad.Text = "";
-                    capaDatosU.CriptosDelUsuario(dgvTabla);
-                    lblSaldo.Text = $"Tu saldo es de {UsuarioCE.userMain.Saldo.ToString("F3")} USDT.";
-                }
-
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error!\n\n" + ex.Message);
-                }
-                
+                MessageBox.Show("Recuerda:\n\n Selecciona una cripto en la tabla.\nEstablece el monto que vas a comprar/vender.", "Error!");
             }
         }
 

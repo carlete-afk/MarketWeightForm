@@ -1,3 +1,5 @@
+using CapaNegocio;
+
 namespace CapaPresentacion
 {
     public partial class frmMenuPrincipal : Form
@@ -7,31 +9,25 @@ namespace CapaPresentacion
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnRegistro_Click(object sender, EventArgs e)
         {
-            frmRegistro formRegistro = new frmRegistro();
+            frmRegistro formRegistro = new();
             formRegistro.Show();
 
             Hide();
-
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            frmLogin formLogin = new frmLogin();
+            frmLogin formLogin = new();
             formLogin.Show();
 
             Hide();
         }
 
-        private void MenuPrincipal_Load(object sender, EventArgs e)
+        private void btnSalir_Click(object sender, EventArgs e)
         {
-
+            Application.Exit();
         }
     }
 }

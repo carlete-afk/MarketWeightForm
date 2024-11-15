@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.Common;
 using System.Security.Cryptography;
 using System.Text;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace CapaDatos
 {
@@ -68,7 +67,7 @@ namespace CapaDatos
             }
             catch (DbException ex)
             {
-                MessageBox.Show($"Error en CapaDatos.UsuarioLogin\n\n" + ex.Message);
+                MessageBox.Show(ex.Message, "Error en UsuarioCD.UsuarioLogin");
                 return null;
             }
         }
@@ -93,7 +92,7 @@ namespace CapaDatos
             }
             catch (DbException ex)
             {
-                MessageBox.Show("Error en capaDatos.UsuarioRegistro\n\n" + ex.Message);
+                MessageBox.Show(ex.Message, "Error en UsuarioCD.UsuarioRegistro");
             }
 
             return usuario;
@@ -106,7 +105,7 @@ namespace CapaDatos
                 Conexion objetoConectar = new Conexion();
 
                 string query = @"
-                    SELECT M.nombre AS 'Criptomoneda', UM.cantidad AS 'Cantidad'
+                    SELECT M.nombre 'Criptomoneda', UM.cantidad 'Cantidad', M.precio 'Cotización'
                     FROM UsuarioMoneda UM
                     JOIN Moneda M USING(idMoneda)
                     WHERE idUsuario = @idUsuario;
@@ -123,7 +122,7 @@ namespace CapaDatos
             }
             catch (DbException ex)
             {
-                MessageBox.Show("Error en capaDatos.CriptosDelUsuario\n\n" + ex.Message);
+                MessageBox.Show(ex.Message, "Error en UsuarioCD.CriptosDelUsuario");
             }
         }
 
@@ -143,9 +142,10 @@ namespace CapaDatos
 
                 return true;
             }
+
             catch (DbException ex)
             {
-                MessageBox.Show("No se pudo vender la cripto!" + ex.Message);
+                MessageBox.Show(ex.Message, "Error en UsuarioCD.CompraCripto");
                 return false;
             }
         }
@@ -167,13 +167,13 @@ namespace CapaDatos
 
                 return true;
             }
+
             catch (DbException ex)
             {
-                MessageBox.Show("No se pudo vender la cripto!" + ex.Message);
+                MessageBox.Show(ex.Message, "Error en UsuarioCD.VenderCripto");
                 return false;
             }
         }
-
 
         public bool TransferirCripto(string nombreMoneda, UsuarioCE usuarioE, decimal cantidad, string emailUsuarioTransferido)
         {
@@ -192,9 +192,10 @@ namespace CapaDatos
 
                 return true;
             }
+
             catch (DbException ex)
             {
-                MessageBox.Show($"No Se pudo Transferir la cripto\n\n" + ex.Message);
+                MessageBox.Show(ex.Message, "Error en UsuarioCD.TransferirCripto");
                 return false;
             }
         }
@@ -218,13 +219,13 @@ namespace CapaDatos
                 }
                 return Convert.ToUInt32(resultado);
             }
+
             catch (DbException ex)
             {
-                MessageBox.Show("Error en capaDatos.ObtenerIdUsuario\n\n" + ex.Message);
+                MessageBox.Show(ex.Message, "Error en UsuarioCD.ObtenerIdUsuario");
                 return 0;
             }
         }
-
 
         public bool IngresarDinero(UsuarioCE usuario, decimal saldo)
         {
@@ -243,7 +244,7 @@ namespace CapaDatos
             }
             catch (DbException ex)
             {
-                MessageBox.Show("No se pudo vender la cripto!" + ex.Message);
+                MessageBox.Show(ex.Message, "Error en UsuarioCD.IngresarDinero");
                 return false;
             }
         }
@@ -259,7 +260,7 @@ namespace CapaDatos
                 Conexion objetoConectar = new Conexion();
 
                 string query = @$"
-                    SELECT M.nombre, H.cantidad, H.fechaHora
+                    SELECT M.nombre 'Criptomoneda', H.cantidad 'Cantidad', H.fechaHora 'Fecha'
                     FROM Historial H
                     JOIN Usuario U USING(idUsuario)
                     JOIN Moneda M USING(idMoneda)
@@ -276,11 +277,40 @@ namespace CapaDatos
 
                 objetoConectar.CerrarConexion();
             }
+
             catch (DbException ex)
             {
-                MessageBox.Show("No se pudo mostrar el Historial: " + ex.Message);
+                MessageBox.Show(ex.Message, "Error en UsuarioCD.HistorialUsuario");
             }
         }
 
+        public void ActualizarSaldo()
+        {
+            Conexion conexion = new();
+            var saldo = 0m;
+
+            try
+            {
+                string query = @$"
+                SELECT saldo
+                FROM Usuario
+                WHERE idUsuario = @idUsuario;
+                ";
+                MySqlCommand cmd = new(query, conexion.Conectar());
+
+                cmd.Parameters.AddWithValue("@idUsuario", UsuarioCE.userMain.idUsuario);
+
+                cmd.CommandType = CommandType.Text;
+
+                saldo = Convert.ToDecimal(cmd.ExecuteScalar());
+            }
+
+            catch (DbException ex)
+            {
+                MessageBox.Show(ex.Message, "Error en UsuarioCD.ActualizarSaldo");
+            }
+
+            UsuarioCE.userMain.Saldo = saldo;
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace CapaDatos
             {
                 Conexion objetoConectar = new Conexion();
 
-                string query = "SELECT nombre AS 'Criptomoneda', precio AS 'Precio', cantidad AS 'Cantidad' FROM Moneda;";
+                string query = "SELECT nombre 'Criptomoneda', precio 'Cotización', cantidad 'Cantidad' FROM Moneda;";
                 tablaMonedas.DataSource = null;
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(query, objetoConectar.Conectar());
@@ -32,7 +32,7 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se pudo mostrar las criptos" + ex.ToString());
+                MessageBox.Show(ex.Message, "Error en MonedaCD.TraerCriptos");
             }
         }
 
@@ -43,7 +43,7 @@ namespace CapaDatos
             {
                 Conexion objetoConectar = new();
 
-                string query = $"SELECT nombre 'Criptomoneda', precio 'Precio', cantidad 'Cantidad' FROM Moneda WHERE nombre LIKE '%{nombre}%';";
+                string query = $"SELECT nombre 'Criptomoneda', precio 'Cotización', cantidad 'Cantidad' FROM Moneda WHERE nombre LIKE '%{nombre}%';";
                 tablaMonedas.DataSource = null;
 
                 tablaMonedas.DataSource = null;
@@ -58,7 +58,7 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se encontro la criptomoneda" + ex.ToString());
+                MessageBox.Show(ex.Message, "Error en MonedaCD.BuscarCriptos");
 
                 return false;
             }
@@ -79,7 +79,7 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se pudo obtener el ID: " + ex.Message);
+                MessageBox.Show(ex.Message, "Error en MonedaCD.ObtenerIdMoneda");
                 return 0;
             }
 
@@ -122,7 +122,7 @@ namespace CapaDatos
             }
             catch (DbException ex)
             {
-                MessageBox.Show($"Error! \n\n{ex} ");
+                MessageBox.Show(ex.Message, "Error en MonedaCD.CrearMonedaOBJ");
                 return null;
             }
         }

@@ -37,6 +37,7 @@
             btnCerrarSesion = new Button();
             btnHistorial = new Button();
             lblSaldo = new Label();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -55,7 +56,7 @@
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.InitialImage = null;
-            pictureBox1.Location = new Point(508, 120);
+            pictureBox1.Location = new Point(507, 114);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(252, 285);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -65,7 +66,7 @@
             // btnTransferir
             // 
             btnTransferir.Font = new Font("Sitka Text", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnTransferir.Location = new Point(12, 261);
+            btnTransferir.Location = new Point(12, 210);
             btnTransferir.Name = "btnTransferir";
             btnTransferir.Size = new Size(206, 37);
             btnTransferir.TabIndex = 5;
@@ -76,7 +77,7 @@
             // btnCompraVenta
             // 
             btnCompraVenta.Font = new Font("Sitka Text", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCompraVenta.Location = new Point(12, 204);
+            btnCompraVenta.Location = new Point(12, 167);
             btnCompraVenta.Name = "btnCompraVenta";
             btnCompraVenta.Size = new Size(206, 37);
             btnCompraVenta.TabIndex = 4;
@@ -87,7 +88,7 @@
             // btnTablaCripto
             // 
             btnTablaCripto.Font = new Font("Sitka Text", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnTablaCripto.Location = new Point(249, 204);
+            btnTablaCripto.Location = new Point(249, 167);
             btnTablaCripto.Name = "btnTablaCripto";
             btnTablaCripto.Size = new Size(206, 37);
             btnTablaCripto.TabIndex = 7;
@@ -98,7 +99,7 @@
             // btnCerrarSesion
             // 
             btnCerrarSesion.Font = new Font("Sitka Text", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCerrarSesion.Location = new Point(120, 379);
+            btnCerrarSesion.Location = new Point(138, 341);
             btnCerrarSesion.Name = "btnCerrarSesion";
             btnCerrarSesion.Size = new Size(206, 37);
             btnCerrarSesion.TabIndex = 8;
@@ -109,7 +110,7 @@
             // btnHistorial
             // 
             btnHistorial.Font = new Font("Sitka Text", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnHistorial.Location = new Point(249, 260);
+            btnHistorial.Location = new Point(249, 210);
             btnHistorial.Name = "btnHistorial";
             btnHistorial.Size = new Size(206, 37);
             btnHistorial.TabIndex = 9;
@@ -129,12 +130,24 @@
             lblSaldo.Text = "Tu saldo es de 0";
             lblSaldo.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // button1
+            // 
+            button1.Font = new Font("Sitka Text", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.Location = new Point(12, 253);
+            button1.Name = "button1";
+            button1.Size = new Size(206, 37);
+            button1.TabIndex = 33;
+            button1.Text = "Depositar";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // frmMenuUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SlateGray;
             ClientSize = new Size(800, 450);
+            Controls.Add(button1);
             Controls.Add(lblSaldo);
             Controls.Add(btnHistorial);
             Controls.Add(btnCerrarSesion);
@@ -161,5 +174,6 @@
         private Button btnCerrarSesion;
         private Button btnHistorial;
         private Label lblSaldo;
+        private Button button1;
     }
 }

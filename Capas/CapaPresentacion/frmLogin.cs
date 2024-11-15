@@ -32,7 +32,7 @@ namespace CapaPresentacion
 
         private void titulo_Click(object sender, EventArgs e)
         {
-                
+
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
