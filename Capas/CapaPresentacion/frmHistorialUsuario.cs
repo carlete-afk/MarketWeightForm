@@ -24,6 +24,7 @@ namespace CapaPresentacion
 
             UsuarioCD capaDatos = new();
             capaDatos.HistorialUsuario(inputSearch.Text, dgvTabla);
+            dgvTabla.Columns["Cantidad"].DefaultCellStyle.Format = "F3";
         }
 
         private void btnVolver_Click(object sender, EventArgs e)

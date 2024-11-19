@@ -29,5 +29,15 @@ namespace CapaPresentacion
         {
             Application.Exit();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            UsuarioCN capaNegocio = new();
+
+            capaNegocio.EstablecerUsuarioDelLogin("admin", "admin");
+            frmMenuUsuario frmMenuUsuario = new frmMenuUsuario();
+            frmMenuUsuario.Show();
+            Hide();
+        }
     }
 }

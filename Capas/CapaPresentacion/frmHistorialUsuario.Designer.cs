@@ -90,6 +90,7 @@
             dgvTabla.Location = new Point(171, 88);
             dgvTabla.Name = "dgvTabla";
             dgvTabla.ReadOnly = true;
+            dgvTabla.RowHeadersVisible = false;
             dgvTabla.Size = new Size(617, 350);
             dgvTabla.TabIndex = 27;
             // 

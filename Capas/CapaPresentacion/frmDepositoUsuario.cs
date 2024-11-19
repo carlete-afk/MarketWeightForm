@@ -15,14 +15,17 @@ namespace CapaPresentacion
         private void btnDepositar_Click(object sender, EventArgs e)
         {
             UsuarioCD capaDatos = new();
+            bool x;
 
             try
             {
                 decimal monto = Convert.ToDecimal(inputMonto.Text);
                 if (!string.IsNullOrWhiteSpace(inputMonto.Text) && monto > 0)
                 {
-                    capaDatos.IngresarDinero(UsuarioCE.userMain, Convert.ToDecimal(inputMonto.Text));
-                    MessageBox.Show("El depósito se ha realizado correrectamente", "Depósito completado");
+                    x = capaDatos.IngresarDinero(UsuarioCE.userMain, Convert.ToDecimal(inputMonto.Text));
+
+                    if (x) MessageBox.Show("El depósito se ha realizado correctamente", "Depósito completado");
+
                     capaDatos.ActualizarSaldo();
                     lblSaldo.Text = $"Tu saldo es de {UsuarioCE.userMain.Saldo:F3} USDT.";
                 }

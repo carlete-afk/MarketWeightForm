@@ -62,6 +62,7 @@
             dgvTabla.Location = new Point(342, 60);
             dgvTabla.Name = "dgvTabla";
             dgvTabla.ReadOnly = true;
+            dgvTabla.RowHeadersVisible = false;
             dgvTabla.Size = new Size(446, 378);
             dgvTabla.TabIndex = 19;
             dgvTabla.CellMouseClick += dgvTabla_CellMouseClick;

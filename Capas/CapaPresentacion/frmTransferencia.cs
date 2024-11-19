@@ -24,6 +24,8 @@ namespace CapaPresentacion
             lblCriptoActual.Text = "";
             UsuarioCD capaDatos = new();
             capaDatos.CriptosDelUsuario(dgvTabla);
+            dgvTabla.Columns["Cotización"].DefaultCellStyle.Format = "F3";
+            dgvTabla.Columns["Cantidad"].DefaultCellStyle.Format = "F3";
             dgvTabla.ClearSelection();
         }
 
@@ -49,23 +51,21 @@ namespace CapaPresentacion
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             UsuarioCD capaDatos = new();
+            bool y;
 
             try
             {
-                if (x == false || string.IsNullOrWhiteSpace(inputCantidad.Text) || string.IsNullOrWhiteSpace(inputEmail.Text))
+                if (x == false || string.IsNullOrWhiteSpace(inputCantidad.Text) || string.IsNullOrWhiteSpace(inputEmail.Text) || Convert.ToDecimal(inputCantidad.Text) <= 0)
                 {
-                    MessageBox.Show("Recuerda:\nSelecciona una cripto en la tabla.\nColoca un email válido\nEstablecer el monto.", "Error!");
+                    MessageBox.Show("Recuerda:\nSelecciona una cripto en la tabla.\nColoca un email válido.\nEstablecer el monto.\nEl monto tiene que ser mayor a cero", "Error!");
                 }
 
                 else
                 {
                     MessageBox.Show(dgvTabla.CurrentCell.Value.ToString());
-                    if(capaDatos.TransferirCripto(dgvTabla.CurrentCell.Value.ToString(), UsuarioCE.userMain, Convert.ToDecimal(inputCantidad.Text), inputEmail.Text))
-                    {
-                        MessageBox.Show("Transferencia realizada correctamente!");
-                    }
+                    y = capaDatos.TransferirCripto(dgvTabla.CurrentCell.Value.ToString(), UsuarioCE.userMain, Convert.ToDecimal(inputCantidad.Text), inputEmail.Text);
 
-                    
+                    if (y) MessageBox.Show("Transferencia realizada correctamente!");
                     ResetInputs();
                 }
             }
@@ -78,7 +78,13 @@ namespace CapaPresentacion
             finally
             {
                 capaDatos.CriptosDelUsuario(dgvTabla);
+                dgvTabla.ClearSelection();
             }
+        }
+
+        private void dgvTabla_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

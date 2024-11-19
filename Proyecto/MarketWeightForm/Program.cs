@@ -1,5 +1,6 @@
 using CapaPresentacion;
 using CapaEntidad;
+using System.Security.Policy;
 
 namespace MarketWeightForm
 {

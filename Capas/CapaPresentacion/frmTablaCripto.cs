@@ -57,6 +57,8 @@ namespace CapaPresentacion
         private void frmTablaCripto_Load(object sender, EventArgs e)
         {
             capaDatosM.TraerCriptos(dgvTabla);
+            dgvTabla.Columns["Cotización"].DefaultCellStyle.Format = "F3";
+            dgvTabla.Columns["Cantidad"].DefaultCellStyle.Format = "F3";
         }
     }
 }

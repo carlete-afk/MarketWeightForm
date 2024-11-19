@@ -34,6 +34,7 @@
             pictureBox1 = new PictureBox();
             btnRegistro = new Button();
             btnSalir = new Button();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -92,12 +93,24 @@
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
             // 
+            // button1
+            // 
+            button1.Font = new Font("Sitka Text", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.Location = new Point(757, 12);
+            button1.Name = "button1";
+            button1.Size = new Size(31, 29);
+            button1.TabIndex = 29;
+            button1.Text = "⚠️";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // frmMenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SlateGray;
             ClientSize = new Size(800, 450);
+            Controls.Add(button1);
             Controls.Add(btnSalir);
             Controls.Add(pictureBox1);
             Controls.Add(btnLogin);
@@ -119,5 +132,6 @@
         private PictureBox pictureBox1;
         private Button btnRegistro;
         private Button btnSalir;
+        private Button button1;
     }
 }

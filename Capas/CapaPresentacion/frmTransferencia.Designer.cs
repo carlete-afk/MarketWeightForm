@@ -100,8 +100,10 @@
             dgvTabla.Location = new Point(401, 12);
             dgvTabla.Name = "dgvTabla";
             dgvTabla.ReadOnly = true;
+            dgvTabla.RowHeadersVisible = false;
             dgvTabla.Size = new Size(387, 426);
             dgvTabla.TabIndex = 31;
+            dgvTabla.CellContentClick += dgvTabla_CellContentClick;
             dgvTabla.CellMouseClick += dgvTabla_CellMouseClick;
             // 
             // btnConfirmar

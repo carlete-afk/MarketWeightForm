@@ -18,13 +18,13 @@ namespace CapaDatos
         {
             try
             {
-                Conexion objetoConectar = new Conexion();
+                Conexion objetoConectar = new();
 
                 string query = "SELECT nombre 'Criptomoneda', precio 'Cotización', cantidad 'Cantidad' FROM Moneda;";
                 tablaMonedas.DataSource = null;
 
-                MySqlDataAdapter adapter = new MySqlDataAdapter(query, objetoConectar.Conectar());
-                DataTable dt = new DataTable();
+                MySqlDataAdapter adapter = new(query, objetoConectar.Conectar());
+                DataTable dt = new();
                 adapter.Fill(dt);
                 tablaMonedas.DataSource = dt;
 
@@ -48,7 +48,7 @@ namespace CapaDatos
 
                 tablaMonedas.DataSource = null;
                 MySqlDataAdapter adapter = new MySqlDataAdapter(query, objetoConectar.Conectar());
-                DataTable dt = new DataTable();
+                DataTable dt = new();
                 adapter.Fill(dt);
                 tablaMonedas.DataSource = dt;
 
