@@ -62,7 +62,6 @@ namespace CapaPresentacion
 
                 else
                 {
-                    MessageBox.Show(dgvTabla.CurrentCell.Value.ToString());
                     y = capaDatos.TransferirCripto(dgvTabla.CurrentCell.Value.ToString(), UsuarioCE.userMain, Convert.ToDecimal(inputCantidad.Text), inputEmail.Text);
 
                     if (y) MessageBox.Show("Transferencia realizada correctamente!");
