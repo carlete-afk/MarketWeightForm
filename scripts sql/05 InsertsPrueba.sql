@@ -29,5 +29,3 @@ CALL ComprarMoneda(1, 2, 'Cardano');
 CALL ComprarMoneda(1, 2, 'Ripple');
 
 CALL Transferencia('Bitcoin', 0.5, 1, 'luis.martinez@example.com');
-
-CALL Transferencia('Bitcoin', 0.5, 1, 'jorge');
