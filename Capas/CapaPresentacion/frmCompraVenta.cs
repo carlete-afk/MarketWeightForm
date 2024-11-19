@@ -105,6 +105,7 @@ namespace CapaPresentacion
 
                     catch (Exception ex)
                     {
+                        capaDatosM.TraerCriptos(dgvTabla);
                         MessageBox.Show($"Cantidad: {inputCantidad.Text}\nCelda: {celda}\n\n" + ex.Message, "Error!");
                     }
                 }
@@ -125,6 +126,7 @@ namespace CapaPresentacion
 
                     catch (Exception ex)
                     {
+                        capaDatosU.CriptosDelUsuario(dgvTabla);
                         MessageBox.Show("Error!\n\n" + ex.Message);
                     }
                 }

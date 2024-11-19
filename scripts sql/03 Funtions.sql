@@ -36,11 +36,14 @@ DROP FUNCTION IF EXISTS ObtenerIdUsuario $$
 CREATE FUNCTION `ObtenerIdUsuario`(xemail varchar(45)) RETURNS INT
 READS SQL DATA
 BEGIN
-    SELECT idUsuario INTO @idusuario
-    FROM Usuario
-    WHERE email = xemail;
-    
-    RETURN @idusuario;
+        SELECT idUsuario INTO @idusuario
+        FROM Usuario
+        WHERE email = xemail;
+    IF (@idusuario IS NOT NULL)
+    THEN
+        RETURN @idusuario;
+    END IF;
+        RETURN NULL;
 END $$
 
 DROP FUNCTION IF EXISTS ObtenerIdMoneda $$

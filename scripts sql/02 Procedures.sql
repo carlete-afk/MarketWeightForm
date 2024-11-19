@@ -85,7 +85,7 @@ BEGIN
 END $$
 
 DROP PROCEDURE IF EXISTS Transferencia $$
-CREATE PROCEDURE `Transferencia`(xnombre VARCHAR(45), xCantidad DECIMAL(20,10) UNSIGNED, xidUsuarioTransfiere INT UNSIGNED, xidUsuarioTransferido INT UNSIGNED)
+CREATE PROCEDURE `Transferencia`(xnombre VARCHAR(45), xCantidad DECIMAL(20,10) UNSIGNED, xidUsuarioTransfiere INT UNSIGNED, xemail VARCHAR(45))
 BEGIN
        START TRANSACTION;
        IF (PuedeVender(xidUsuarioTransfiere, xCantidad, ObtenerIdMoneda(xnombre)))
@@ -105,20 +105,20 @@ BEGIN
        IF (NOT (EXISTS (
                      SELECT *
                      FROM `UsuarioMoneda`
-                     WHERE `idMoneda` = ObtenerIdMoneda(xnombre) AND `idUsuario` = xidUsuarioTransferido
+                     WHERE `idMoneda` = ObtenerIdMoneda(xnombre) AND `idUsuario` = ObtenerIdUsuario(xemail)
                      )))
                      THEN 
                             INSERT INTO `UsuarioMoneda` (`idUsuario`, `idMoneda`, cantidad)
-                            VALUES(xidUsuarioTransferido, ObtenerIdMoneda(xnombre), 0);
+                            VALUES(ObtenerIdUsuario(xemail), ObtenerIdMoneda(xnombre), 0);
        END IF;
 
 
               UPDATE UsuarioMoneda
               SET cantidad = cantidad + xCantidad
               WHERE idMoneda = ObtenerIdMoneda(xnombre)
-              AND idUsuario = xidUsuarioTransferido;
+              AND idUsuario = ObtenerIdUsuario(xemail);
 
               INSERT INTO Historial (idMoneda, cantidad, fechaHora, compra, idUsuario)
-              VALUES (ObtenerIdMoneda(xnombre), xcantidad, NOW(), NULL, xidUsuarioTransferido);
+              VALUES (ObtenerIdMoneda(xnombre), xcantidad, NOW(), NULL, ObtenerIdUsuario(xemail));
        COMMIT;
 END $$

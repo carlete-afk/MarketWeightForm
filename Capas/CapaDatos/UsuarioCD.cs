@@ -186,9 +186,10 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("xnombre", nombreMoneda);
                 cmd.Parameters.AddWithValue("xcantidad", cantidad);
                 cmd.Parameters.AddWithValue("xidUsuarioTransfiere", usuarioE.idUsuario);
-                cmd.Parameters.AddWithValue("xidUsuarioTransferido", ObtenerIdUsuario(emailUsuarioTransferido));
+                cmd.Parameters.AddWithValue("xemail", emailUsuarioTransferido);
 
-                int rowsAffected = cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
+                conexion.CerrarConexion();
 
                 return true;
             }
@@ -197,6 +198,7 @@ namespace CapaDatos
             {
                 MessageBox.Show(ex.Message, "Error en UsuarioCD.TransferirCripto");
                 return false;
+                
             }
         }
 
