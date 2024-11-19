@@ -38,6 +38,8 @@
             btnHistorial = new Button();
             lblSaldo = new Label();
             button1 = new Button();
+            lblVersion = new Label();
+            btnCreditos = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -141,12 +143,37 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // lblVersion
+            // 
+            lblVersion.AutoSize = true;
+            lblVersion.Font = new Font("Microsoft Tai Le", 12F);
+            lblVersion.ForeColor = Color.White;
+            lblVersion.Location = new Point(737, 420);
+            lblVersion.Name = "lblVersion";
+            lblVersion.Size = new Size(51, 21);
+            lblVersion.TabIndex = 34;
+            lblVersion.Text = "v0.0.0";
+            lblVersion.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnCreditos
+            // 
+            btnCreditos.Font = new Font("Sitka Text", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCreditos.Location = new Point(249, 253);
+            btnCreditos.Name = "btnCreditos";
+            btnCreditos.Size = new Size(206, 37);
+            btnCreditos.TabIndex = 35;
+            btnCreditos.Text = "Créditos";
+            btnCreditos.UseVisualStyleBackColor = true;
+            btnCreditos.Click += btnCreditos_Click;
+            // 
             // frmMenuUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SlateGray;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnCreditos);
+            Controls.Add(lblVersion);
             Controls.Add(button1);
             Controls.Add(lblSaldo);
             Controls.Add(btnHistorial);
@@ -176,5 +203,7 @@
         private Button btnHistorial;
         private Label lblSaldo;
         private Button button1;
+        private Label lblVersion;
+        private Button btnCreditos;
     }
 }

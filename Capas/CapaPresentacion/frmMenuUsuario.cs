@@ -14,6 +14,9 @@ namespace CapaPresentacion
 {
     public partial class frmMenuUsuario : Form
     {
+
+        public readonly static string nVersion = "v1.0.2";
+
         public frmMenuUsuario()
         {
             InitializeComponent();
@@ -22,6 +25,8 @@ namespace CapaPresentacion
         private void MenuUsuario_Load(object sender, EventArgs e)
         {
             UsuarioCD capaDatos = new();
+
+            lblVersion.Text = nVersion;
 
             titulo.Text = $"Buen día {UsuarioCE.userMain.Nombre}!";
             capaDatos.ActualizarSaldo();
@@ -68,6 +73,22 @@ namespace CapaPresentacion
             frmDepositoUsuario frmDepositoUsuario = new();
             frmDepositoUsuario.Show();
             Close();
+        }
+
+        private void btnCreditos_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(@"
+            Programa MarketWeight hecho por:
+
+            Carlos Bello.    Walter Benítez.
+            Jorge Casco.    Guido Gavilán.
+
+            Estudiantes de la Escuela Técnica N°12, 5to 8va 2024.
+
+            Este programa está bajo la licencia Creative Commons
+            Attribution-ShareAlike 4.0 International ",
+
+            "Créditos");
         }
     }
 }

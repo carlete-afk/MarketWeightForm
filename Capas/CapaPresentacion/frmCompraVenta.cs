@@ -1,5 +1,7 @@
 ﻿using CapaDatos;
 using CapaEntidad;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Drawing.Drawing2D;
 
 namespace CapaPresentacion
 {
@@ -53,6 +55,11 @@ namespace CapaPresentacion
         {
             lblCriptoActual.Text = "";
             capaDatosM.TraerCriptos(dgvTabla);
+
+            dgvTabla.Columns["Cotización"].DefaultCellStyle.Format = "F3";
+            dgvTabla.Columns["Cantidad"].DefaultCellStyle.Format = "F3";
+
+
             capaDatosU.ActualizarSaldo();
             lblSaldo.Text = $"Tu saldo es de {UsuarioCE.userMain.Saldo:F3} USDT.";
             dgvTabla.ClearSelection();
@@ -89,44 +96,32 @@ namespace CapaPresentacion
 
             if (click && string.IsNullOrWhiteSpace(inputCantidad.Text) == false)
             {
-                if (compra)
+                bool x;
+                try
                 {
-                    try
+                    if (compra)
                     {
-                        capaDatos.CompraCripto(celda, UsuarioCE.userMain, Convert.ToDecimal(inputCantidad.Text));
-
-                        MessageBox.Show("Compra realizada con éxito!");
-
-                        inputCantidad.Text = "";
+                        x = capaDatos.CompraCripto(celda, UsuarioCE.userMain, Convert.ToDecimal(inputCantidad.Text));
                         capaDatosM.TraerCriptos(dgvTabla);
-                        capaDatosU.ActualizarSaldo();
-                        lblSaldo.Refresh();
                     }
 
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show($"Cantidad: {inputCantidad.Text}\nCelda: {celda}\n\n" + ex.Message, "Error!");
+                        x = capaDatos.VenderCripto(celda, UsuarioCE.userMain, Convert.ToDecimal(inputCantidad.Text));
+                        capaDatosU.CriptosDelUsuario(dgvTabla);
                     }
+
+                    if (x) MessageBox.Show("Venta realizada con éxito!");
+
+                    inputCantidad.Text = "";
+                    
+                    capaDatosU.ActualizarSaldo();
+                    lblSaldo.Refresh();
                 }
 
-                else
+                catch (Exception ex)
                 {
-                    try
-                    {
-                        capaDatos.VenderCripto(celda, UsuarioCE.userMain, Convert.ToDecimal(inputCantidad.Text));
-
-                        MessageBox.Show("Venta realizada con éxito!");
-
-                        inputCantidad.Text = "";
-                        capaDatosU.CriptosDelUsuario(dgvTabla);
-                        capaDatosU.ActualizarSaldo();
-                        lblSaldo.Refresh();
-                    }
-
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error!\n\n" + ex.Message);
-                    }
+                    MessageBox.Show($"Cantidad: {inputCantidad.Text}\nCelda: {celda}\n\n" + ex.Message, "Error!");
                 }
             }
 
