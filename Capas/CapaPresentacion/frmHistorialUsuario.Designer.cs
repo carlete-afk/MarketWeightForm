@@ -116,6 +116,7 @@
             Controls.Add(lblBusqueda);
             Controls.Add(inputSearch);
             Controls.Add(dgvTabla);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmHistorialUsuario";
             Text = "MarketWeight";
             Load += frmHistorialUsuario_Load;

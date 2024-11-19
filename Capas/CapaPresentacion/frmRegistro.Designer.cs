@@ -187,6 +187,7 @@
             Controls.Add(lblNombre);
             Controls.Add(inputNombre);
             Controls.Add(titulo);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmRegistro";
             Text = "MarketWeight";
             Load += frmRegistro_Load;

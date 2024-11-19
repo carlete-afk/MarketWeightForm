@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCompraVenta));
             btnCambiarTransaccion = new Button();
             dgvTabla = new DataGridView();
             lblCompraVenta = new Label();
@@ -168,6 +169,7 @@
             Controls.Add(lblCompraVenta);
             Controls.Add(dgvTabla);
             Controls.Add(btnCambiarTransaccion);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmCompraVenta";
             Text = "MarketWeight";
             Load += frmCompraVenta_Load;

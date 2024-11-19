@@ -156,6 +156,7 @@
             Controls.Add(btnTransferir);
             Controls.Add(btnCompraVenta);
             Controls.Add(titulo);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmMenuUsuario";
             Text = "MarketWeight";
             Load += MenuUsuario_Load;

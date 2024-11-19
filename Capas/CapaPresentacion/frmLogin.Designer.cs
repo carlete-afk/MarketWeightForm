@@ -139,6 +139,7 @@
             Controls.Add(lblEmail);
             Controls.Add(inputEmail);
             Controls.Add(titulo);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmLogin";
             Text = "MarketWeight";
             Load += frmLogin_Load;

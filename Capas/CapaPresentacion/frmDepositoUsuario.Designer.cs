@@ -127,6 +127,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(btnDepositar);
             Controls.Add(titulo);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmDepositoUsuario";
             Text = "MarketWeight";
             Load += frmDepositoUsuario_Load;

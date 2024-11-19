@@ -141,6 +141,7 @@
             Controls.Add(btnMisCriptos);
             Controls.Add(btnMostrarCriptos);
             Controls.Add(dgvTabla);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmTablaCripto";
             Text = "MarketWeight";
             Load += frmTablaCripto_Load;

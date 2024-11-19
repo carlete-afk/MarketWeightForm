@@ -103,6 +103,7 @@
             Controls.Add(btnLogin);
             Controls.Add(btnRegistro);
             Controls.Add(titulo);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
             Name = "frmMenuPrincipal";
             Text = "MarketWeight";

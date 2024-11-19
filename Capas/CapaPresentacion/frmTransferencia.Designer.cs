@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTransferencia));
             lblCompraVenta = new Label();
             lblCantidad = new Label();
             inputCantidad = new TextBox();
@@ -163,6 +164,7 @@
             Controls.Add(lblEmail);
             Controls.Add(inputEmail);
             Controls.Add(lblCompraVenta);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmTransferencia";
             Text = "MarketWeight";
             Load += frmTransferencia_Load;
