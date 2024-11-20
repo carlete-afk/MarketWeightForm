@@ -9,6 +9,8 @@ namespace CapaPresentacion
 {
     internal static class Global
     {
+        public readonly static string nVersion = "v1.1.0";
+
         internal static MonedaCD capaDatosM = new();
         internal static UsuarioCD capaDatosU = new();
 

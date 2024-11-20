@@ -5,7 +5,7 @@ namespace CapaPresentacion
     public partial class frmMenuUsuario : Form
     {
 
-        public readonly static string nVersion = "v1.0.3";
+
 
         public frmMenuUsuario()
         {

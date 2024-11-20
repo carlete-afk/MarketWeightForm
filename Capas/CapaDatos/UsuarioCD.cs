@@ -262,7 +262,7 @@ namespace CapaDatos
                 Conexion objetoConectar = new Conexion();
 
                 string query = @$"
-                    SELECT M.nombre 'Criptomoneda', H.cantidad 'Cantidad', H.fechaHora 'Fecha'
+                    SELECT M.nombre 'Criptomoneda', H.cantidad 'Cantidad', H.fechaHora 'Fecha', H.tipoAccion 'Tipo de accion'
                     FROM Historial H
                     JOIN Usuario U USING(idUsuario)
                     JOIN Moneda M USING(idMoneda)

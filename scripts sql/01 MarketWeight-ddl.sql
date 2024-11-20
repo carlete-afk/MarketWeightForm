@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `Historial` (
   `idMoneda` INT UNSIGNED NOT NULL,
   `cantidad` DECIMAL(20,10) NOT NULL,
   `fechaHora` DATETIME NOT NULL,
-  `compra` TINYINT UNSIGNED,
+  `tipoAccion` VARCHAR(45),
   PRIMARY KEY (`idHistorial`, `idMoneda`, `idUsuario`),
   INDEX `fk_Historial_Moneda1_idx` (`idMoneda` ASC) VISIBLE,
   INDEX `idMoneda_UNIQUE` (`idMoneda` ASC) VISIBLE,

@@ -37,8 +37,8 @@ BEGIN
                      WHERE idMoneda = ObtenerIdMoneda(xnombre)
                      AND idUsuario = xidusuario;
 
-                     INSERT INTO Historial (idMoneda, cantidad, fechaHora, compra, idUsuario)
-                     VALUES (ObtenerIdMoneda(xnombre), xcantidad, NOW(), TRUE, xidusuario);
+                     INSERT INTO Historial (idUsuario, idMoneda, cantidad, fechaHora, tipoAccion)
+                     VALUES (xidusuario, ObtenerIdMoneda(xnombre), xcantidad, NOW(), 'compra' );
               ELSE
                      SIGNAL SQLSTATE '45000'
                      SET MESSAGE_TEXT = "Saldo Insuficiente!";
@@ -72,8 +72,8 @@ BEGIN
               WHERE idMoneda = ObtenerIdMoneda(xnombre)
               AND idUsuario = xidusuario;
 
-              INSERT INTO Historial (idMoneda, cantidad, fechaHora, compra, idUsuario)
-              VALUES (ObtenerIdMoneda(xnombre), (xcantidad * -1), NOW(), FALSE, xidusuario);
+              INSERT INTO Historial (idUsuario, idMoneda, cantidad, fechaHora, tipoAccion)
+              VALUES (xidusuario, ObtenerIdMoneda(xnombre), (xcantidad * -1), NOW(), 'venta');
        ELSE
               SIGNAL SQLSTATE '45000'
               SET MESSAGE_TEXT = "Cantidad Insuficiente!";
@@ -83,10 +83,10 @@ END $$
 
 
 DROP PROCEDURE IF EXISTS AltaHistorial $$
-CREATE PROCEDURE `AltaHistorial`(xidMoneda INT UNSIGNED, xcantidad DECIMAL(20,10) UNSIGNED, xcompra TINYINT UNSIGNED, xidUsuario INT UNSIGNED)
+CREATE PROCEDURE `AltaHistorial`(xidMoneda INT UNSIGNED, xcantidad DECIMAL(20,10) UNSIGNED, xtipoAccion VARCHAR(45), xidUsuario INT UNSIGNED)
 BEGIN
-       INSERT INTO `Historial` (idMoneda, cantidad, fechaHora, compra, idUsuario)
-           VALUES(xidMoneda, xcantidad, NOW(), xcompra, xidUsuario);
+       INSERT INTO `Historial` (idUsuario, idMoneda, cantidad, fechaHora, tipoAccion)
+           VALUES( xidUsuario, xidMoneda, xcantidad, NOW(), xcompra, xtipoAccion);
 END $$
 
 DROP PROCEDURE IF EXISTS Transferencia $$
@@ -101,8 +101,8 @@ BEGIN
                      WHERE idMoneda = ObtenerIdMoneda(xnombre)
                      AND idUsuario = xidUsuarioTransfiere;
 
-                     INSERT INTO Historial (idMoneda, cantidad, fechaHora, compra, idUsuario)
-                     VALUES (ObtenerIdMoneda(xnombre), (xCantidad * -1), NOW(), NULL, xidUsuarioTransfiere);
+                     INSERT INTO Historial (idUsuario, idMoneda, cantidad, fechaHora, tipoAccion )
+                     VALUES (xidUsuarioTransfiere, ObtenerIdMoneda(xnombre), (xCantidad * -1), NOW(), 'transferencia');
               ELSE
                      SIGNAL SQLSTATE '45000'
                      SET MESSAGE_TEXT = "Cantidad Insuficiente!";
@@ -124,8 +124,8 @@ BEGIN
                      WHERE idMoneda = ObtenerIdMoneda(xnombre)
                      AND idUsuario = ObtenerIdUsuario(xemail);
 
-                     INSERT INTO Historial (idMoneda, cantidad, fechaHora, compra, idUsuario)
-                     VALUES (ObtenerIdMoneda(xnombre), xcantidad, NOW(), NULL, ObtenerIdUsuario(xemail));
+                     INSERT INTO Historial ( idUsuario, idMoneda, cantidad, fechaHora, tipoAccion)
+                     VALUES (ObtenerIdUsuario(xemail), ObtenerIdMoneda(xnombre), xcantidad, NOW(), 'transferencia');
        ELSE   
               SIGNAL SQLSTATE '45000'
               SET MESSAGE_TEXT = "Usuario/Email NO encontrado!!";
