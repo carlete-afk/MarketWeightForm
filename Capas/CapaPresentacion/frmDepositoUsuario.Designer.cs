@@ -68,6 +68,7 @@
             inputMonto.Name = "inputMonto";
             inputMonto.Size = new Size(222, 28);
             inputMonto.TabIndex = 31;
+            inputMonto.TextChanged += inputMonto_TextChanged;
             // 
             // pictureBox1
             // 

@@ -36,7 +36,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Moneda` (
   `idMoneda` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `precio` DECIMAL(20,10) NOT NULL,
-  `cantidad` DECIMAL(20,10) NOT NULL,
+  `cantidad` DECIMAL(20,10) UNSIGNED NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idMoneda`),
   UNIQUE INDEX `idMoneda_UNIQUE` (`idMoneda` ASC) VISIBLE)
@@ -49,7 +49,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `UsuarioMoneda` (
   `idUsuario` INT UNSIGNED NOT NULL,
   `idMoneda` INT UNSIGNED NOT NULL,
-  `cantidad` DECIMAL(20,10) NOT NULL,
+  `cantidad` DECIMAL(20,10) UNSIGNED NOT NULL,
   PRIMARY KEY (`idUsuario`, `idMoneda`),
   INDEX `fk_BilleteraMoneda_Moneda1_idx` (`idMoneda` ASC) VISIBLE,
   INDEX `fk_BilleteraMoneda_Usuario1_idx` (`idUsuario` ASC) VISIBLE,

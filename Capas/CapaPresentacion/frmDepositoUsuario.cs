@@ -63,5 +63,10 @@ namespace CapaPresentacion
             capaDatos.ActualizarSaldo();
             lblSaldo.Text = $"Tu saldo es de {UsuarioCE.userMain.Saldo:F3} USDT.";
         }
+
+        private void inputMonto_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

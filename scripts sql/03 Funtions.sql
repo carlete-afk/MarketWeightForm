@@ -14,6 +14,23 @@ BEGIN
     RETURN NULL;
 END $$
 
+DELIMITER $$
+DROP FUNCTION IF EXISTS CantidadMonedaExiste $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `CantidadMonedaExiste`(xidMoneda INT UNSIGNED, xcantidad DECIMAL(20,10) UNSIGNED) RETURNS TINYINT
+READS SQL DATA
+BEGIN
+    SELECT cantidad INTO @xcantidad
+    FROM Moneda
+    WHERE `idMoneda` = xidMoneda;
+
+    IF (@xcantidad >= xcantidad)
+    THEN
+        RETURN TRUE;
+    ELSE
+        RETURN FALSE;
+    END IF;
+END $$
+
 DROP FUNCTION IF EXISTS PuedeComprar $$
 CREATE DEFINER=`root`@`localhost` FUNCTION `PuedeComprar`(xidusuario INT, xcantidad DECIMAL(20,10), xidmoneda INT UNSIGNED) RETURNS TINYINT
 READS SQL DATA
