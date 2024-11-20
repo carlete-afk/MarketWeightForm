@@ -46,6 +46,20 @@ BEGIN
         RETURN NULL;
 END $$
 
+DROP FUNCTION IF EXISTS ExisteUsuario $$
+CREATE FUNCTION `ExisteUsuario`(xemail varchar(45)) RETURNS TINYINT
+READS SQL DATA
+BEGIN
+    IF (EXISTS(
+        SELECT idUsuario
+        FROM Usuario
+        WHERE email = xemail))
+    THEN
+        RETURN TRUE;
+    END IF;
+        RETURN FALSE;
+END $$
+
 DROP FUNCTION IF EXISTS ObtenerIdMoneda $$
 CREATE FUNCTION `ObtenerIdMoneda`(xnombre varchar(45)) RETURNS INT
 READS SQL DATA
@@ -56,6 +70,8 @@ BEGIN
     
     RETURN @xidmoneda;
 END $$
+
+
 
 DROP FUNCTION IF EXISTS PuedeVender $$
 CREATE FUNCTION `PuedeVender`(xidusuario INT, xcantidadAVender DECIMAL(20,10), xidmoneda INT UNSIGNED) RETURNS TINYINT

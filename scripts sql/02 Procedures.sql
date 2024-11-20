@@ -87,38 +87,42 @@ END $$
 DROP PROCEDURE IF EXISTS Transferencia $$
 CREATE PROCEDURE `Transferencia`(xnombre VARCHAR(45), xCantidad DECIMAL(20,10) UNSIGNED, xidUsuarioTransfiere INT UNSIGNED, xemail VARCHAR(45))
 BEGIN
-       START TRANSACTION;
-       IF (PuedeVender(xidUsuarioTransfiere, xCantidad, ObtenerIdMoneda(xnombre)))
+       IF(ExisteUsuario(xemail))
        THEN
-              UPDATE UsuarioMoneda
-              SET cantidad = cantidad - xCantidad
-              WHERE idMoneda = ObtenerIdMoneda(xnombre)
-              AND idUsuario = xidUsuarioTransfiere;
+              IF (PuedeVender(xidUsuarioTransfiere, xCantidad, ObtenerIdMoneda(xnombre)))
+              THEN
+                     UPDATE UsuarioMoneda
+                     SET cantidad = cantidad - xCantidad
+                     WHERE idMoneda = ObtenerIdMoneda(xnombre)
+                     AND idUsuario = xidUsuarioTransfiere;
 
-              INSERT INTO Historial (idMoneda, cantidad, fechaHora, compra, idUsuario)
-              VALUES (ObtenerIdMoneda(xnombre), (xCantidad * -1), NOW(), NULL, xidUsuarioTransfiere);
-       ELSE
+                     INSERT INTO Historial (idMoneda, cantidad, fechaHora, compra, idUsuario)
+                     VALUES (ObtenerIdMoneda(xnombre), (xCantidad * -1), NOW(), NULL, xidUsuarioTransfiere);
+              ELSE
+                     SIGNAL SQLSTATE '45000'
+                     SET MESSAGE_TEXT = "Cantidad Insuficiente!";
+              END IF;
+
+              IF (NOT (EXISTS (
+                            SELECT *
+                            FROM `UsuarioMoneda`
+                            WHERE `idMoneda` = ObtenerIdMoneda(xnombre) AND `idUsuario` = ObtenerIdUsuario(xemail)
+                            )))
+                            THEN 
+                                   INSERT INTO `UsuarioMoneda` (`idUsuario`, `idMoneda`, cantidad)
+                                   VALUES(ObtenerIdUsuario(xemail), ObtenerIdMoneda(xnombre), 0);
+              END IF;
+
+                     /*usuario a transferir*/
+                     UPDATE UsuarioMoneda
+                     SET cantidad = cantidad + xCantidad
+                     WHERE idMoneda = ObtenerIdMoneda(xnombre)
+                     AND idUsuario = ObtenerIdUsuario(xemail);
+
+                     INSERT INTO Historial (idMoneda, cantidad, fechaHora, compra, idUsuario)
+                     VALUES (ObtenerIdMoneda(xnombre), xcantidad, NOW(), NULL, ObtenerIdUsuario(xemail));
+       ELSE   
               SIGNAL SQLSTATE '45000'
-              SET MESSAGE_TEXT = "Cantidad Insuficiente!";
+              SET MESSAGE_TEXT = "Usuario/Email NO encontrado!!";
        END IF;
-
-       IF (NOT (EXISTS (
-                     SELECT *
-                     FROM `UsuarioMoneda`
-                     WHERE `idMoneda` = ObtenerIdMoneda(xnombre) AND `idUsuario` = ObtenerIdUsuario(xemail)
-                     )))
-                     THEN 
-                            INSERT INTO `UsuarioMoneda` (`idUsuario`, `idMoneda`, cantidad)
-                            VALUES(ObtenerIdUsuario(xemail), ObtenerIdMoneda(xnombre), 0);
-       END IF;
-
-
-              UPDATE UsuarioMoneda
-              SET cantidad = cantidad + xCantidad
-              WHERE idMoneda = ObtenerIdMoneda(xnombre)
-              AND idUsuario = ObtenerIdUsuario(xemail);
-
-              INSERT INTO Historial (idMoneda, cantidad, fechaHora, compra, idUsuario)
-              VALUES (ObtenerIdMoneda(xnombre), xcantidad, NOW(), NULL, ObtenerIdUsuario(xemail));
-       COMMIT;
 END $$

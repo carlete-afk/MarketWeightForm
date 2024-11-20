@@ -1,10 +1,7 @@
 USE 5to_MarketWeight
 DELIMITER $$
 /*USUARIO*/
-
 /*Cifrado de contraseña*/
-
-
 DROP TRIGGER IF EXISTS aftAltaPass $$
 CREATE TRIGGER `aftAltaPass` BEFORE INSERT ON `Usuario` 
 FOR EACH ROW 
@@ -13,6 +10,7 @@ BEGIN
 END $$
 
 
+DELIMITER $$
 /*Verifica si no existe otro usuario registrado con el mismo email*/
 DROP TRIGGER IF EXISTS `Usuario_BEFORE_INSERT`$$
 CREATE  TRIGGER `Usuario_BEFORE_INSERT` BEFORE INSERT ON `Usuario` 
@@ -34,6 +32,7 @@ END $$
 /*Compra*/
 
 /*Verifica y añade saldo a Usuario*/
+DELIMITER $$
 DROP TRIGGER IF EXISTS `aftInsertHistorial`$$
 CREATE DEFINER=`root`@`localhost` TRIGGER `aftInsertHistorial` AFTER INSERT ON `Historial` 
 FOR EACH ROW
@@ -101,7 +100,7 @@ END $$
 
 
 /*MONEDA*/
-
+DELIMITER $$
 DROP TRIGGER IF EXISTS BefAltaMoneda $$
 CREATE TRIGGER `BefAltaMoneda` BEFORE INSERT ON `Moneda` 
 FOR EACH ROW   
@@ -115,3 +114,4 @@ BEGIN
         SET MESSAGE_TEXT = "Moneda ya registrada :v";
     END IF;
 END $$
+
