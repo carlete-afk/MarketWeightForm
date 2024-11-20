@@ -84,7 +84,6 @@
             lblBusqueda.Size = new Size(144, 21);
             lblBusqueda.TabIndex = 20;
             lblBusqueda.Text = "Busca la cripto aquí";
-            lblBusqueda.Click += lblEmail_Click;
             // 
             // inputSearch
             // 

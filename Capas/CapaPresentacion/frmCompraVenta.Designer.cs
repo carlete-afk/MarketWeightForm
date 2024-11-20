@@ -129,7 +129,6 @@
             lblCriptoActual.Size = new Size(156, 48);
             lblCriptoActual.TabIndex = 29;
             lblCriptoActual.Text = "ejemplo";
-            lblCriptoActual.Click += label2_Click;
             // 
             // btnVolver
             // 

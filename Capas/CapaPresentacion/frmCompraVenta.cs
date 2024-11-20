@@ -1,7 +1,4 @@
-﻿using CapaDatos;
-using CapaEntidad;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.Drawing.Drawing2D;
+﻿using CapaEntidad;
 
 namespace CapaPresentacion
 {
@@ -9,8 +6,6 @@ namespace CapaPresentacion
     {
         bool compra = true;
         bool click = false;
-        MonedaCD capaDatosM = new();
-        UsuarioCD capaDatosU = new();
 
         public frmCompraVenta()
         {
@@ -24,7 +19,8 @@ namespace CapaPresentacion
                 lblCompraVenta.Text = "Comprando";
                 btnCambiarTransaccion.Text = "Cambiar a Venta";
                 btnConfirmar.Text = "Comprar";
-                capaDatosM.TraerCriptos(dgvTabla);
+                Global.capaDatosM.TraerCriptos(dgvTabla);
+                Global.DgvFormato(dgvTabla, "Cotización", "Cantidad");
             }
 
             else
@@ -32,35 +28,18 @@ namespace CapaPresentacion
                 lblCompraVenta.Text = "Vendiendo";
                 btnCambiarTransaccion.Text = "Cambiar a Compra";
                 btnConfirmar.Text = "Vender";
-                capaDatosU.CriptosDelUsuario(dgvTabla);
+                Global.capaDatosU.CriptosDelUsuario(dgvTabla);
+                Global.DgvFormato(dgvTabla, "Cotización", "Cantidad");
             }
-        }
-
-        private void titulo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void frmCompraVenta_Load(object sender, EventArgs e)
         {
             lblCriptoActual.Text = "";
-            capaDatosM.TraerCriptos(dgvTabla);
+            Global.capaDatosM.TraerCriptos(dgvTabla);
+            Global.DgvFormato(dgvTabla, "Cotización", "Cantidad");
 
-            dgvTabla.Columns["Cotización"].DefaultCellStyle.Format = "F3";
-            dgvTabla.Columns["Cantidad"].DefaultCellStyle.Format = "F3";
-
-
-            capaDatosU.ActualizarSaldo();
+            Global.capaDatosU.ActualizarSaldo();
             lblSaldo.Text = $"Tu saldo es de {UsuarioCE.userMain.Saldo:F3} USDT.";
             dgvTabla.ClearSelection();
         }
@@ -74,24 +53,20 @@ namespace CapaPresentacion
 
         private void dgvTabla_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-
             if (e.ColumnIndex == 0 && e.RowIndex > -1)
             {
                 click = true;
                 lblCriptoActual.Text = dgvTabla.CurrentCell.Value.ToString();
             }
 
-
             else
             {
                 dgvTabla.ClearSelection();
             }
-
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            UsuarioCD capaDatos = new();
             string celda = dgvTabla.CurrentCell.Value.ToString();
 
             if (click && string.IsNullOrWhiteSpace(inputCantidad.Text) == false)
@@ -101,22 +76,25 @@ namespace CapaPresentacion
                 {
                     if (compra)
                     {
-                        x = capaDatos.CompraCripto(celda, UsuarioCE.userMain, Convert.ToDecimal(inputCantidad.Text));
-                        capaDatosM.TraerCriptos(dgvTabla);
+                        x = Global.capaDatosU.CompraCripto(celda, UsuarioCE.userMain, Convert.ToDecimal(inputCantidad.Text));
+                        Global.capaDatosM.TraerCriptos(dgvTabla);
+                        Global.DgvFormato(dgvTabla, "Cotización", "Cantidad");
                     }
 
                     else
                     {
-                        x = capaDatos.VenderCripto(celda, UsuarioCE.userMain, Convert.ToDecimal(inputCantidad.Text));
-                        capaDatosU.CriptosDelUsuario(dgvTabla);
+                        x = Global.capaDatosU.VenderCripto(celda, UsuarioCE.userMain, Convert.ToDecimal(inputCantidad.Text));
+                        Global.capaDatosU.CriptosDelUsuario(dgvTabla);
+                        Global.DgvFormato(dgvTabla, "Cotización", "Cantidad");
                     }
 
                     if (x) MessageBox.Show("Venta realizada con éxito!");
 
                     inputCantidad.Text = "";
-                    
-                    capaDatosU.ActualizarSaldo();
+
+                    Global.capaDatosU.ActualizarSaldo();
                     lblSaldo.Refresh();
+                    lblCriptoActual.Refresh();
                 }
 
                 catch (Exception ex)

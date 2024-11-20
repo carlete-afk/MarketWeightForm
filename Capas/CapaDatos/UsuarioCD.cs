@@ -43,7 +43,7 @@ namespace CapaDatos
 
                 if (reader.Read())
                 {
-                    UsuarioCE usuario = new UsuarioCE
+                    UsuarioCE usuario = new()
                     {
                         idUsuario = reader.GetUInt32("idUsuario"),
                         Nombre = reader.GetString("Nombre"),
@@ -72,7 +72,7 @@ namespace CapaDatos
             }
         }
 
-        public UsuarioCE UsuarioRegistro(UsuarioCE usuario)
+        public bool UsuarioRegistro(UsuarioCE usuario)
         {
             try
             {
@@ -89,13 +89,13 @@ namespace CapaDatos
 
                 UsuarioCE.userMain = usuario;
 
+                return true;
             }
             catch (DbException ex)
             {
                 MessageBox.Show(ex.Message, "Error en UsuarioCD.UsuarioRegistro");
+                return false;
             }
-
-            return usuario;
         }
 
         public void CriptosDelUsuario(DataGridView tablaCriptoUsuario)

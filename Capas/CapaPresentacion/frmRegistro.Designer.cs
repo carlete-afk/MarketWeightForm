@@ -54,7 +54,6 @@
             titulo.Size = new Size(245, 71);
             titulo.TabIndex = 1;
             titulo.Text = "Registro";
-            titulo.Click += titulo_Click;
             // 
             // inputNombre
             // 
@@ -63,7 +62,6 @@
             inputNombre.Name = "inputNombre";
             inputNombre.Size = new Size(200, 28);
             inputNombre.TabIndex = 2;
-            inputNombre.TextChanged += inputNombre_TextChanged;
             // 
             // lblNombre
             // 
@@ -75,7 +73,6 @@
             lblNombre.Size = new Size(68, 21);
             lblNombre.TabIndex = 3;
             lblNombre.Text = "Nombre";
-            lblNombre.Click += label1_Click;
             // 
             // lblEmail
             // 
@@ -87,7 +84,6 @@
             lblEmail.Size = new Size(54, 21);
             lblEmail.TabIndex = 5;
             lblEmail.Text = "E-mail";
-            lblEmail.Click += label2_Click;
             // 
             // inputMail
             // 
@@ -190,7 +186,6 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmRegistro";
             Text = "MarketWeight";
-            Load += frmRegistro_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

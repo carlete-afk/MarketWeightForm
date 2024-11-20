@@ -92,7 +92,6 @@
             lblEmail.Size = new Size(54, 21);
             lblEmail.TabIndex = 18;
             lblEmail.Text = "E-mail";
-            lblEmail.Click += lblNombre_Click;
             // 
             // inputEmail
             // 
@@ -112,7 +111,6 @@
             titulo.Size = new Size(385, 71);
             titulo.TabIndex = 16;
             titulo.Text = "Iniciar Sesión";
-            titulo.Click += titulo_Click;
             // 
             // btnVolver
             // 
@@ -142,7 +140,6 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmLogin";
             Text = "MarketWeight";
-            Load += frmLogin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using CapaEntidad;
+﻿using CapaEntidad;
 using CapaNegocio;
-using CapaDatos;
 
 namespace CapaPresentacion
 {
@@ -28,26 +18,6 @@ namespace CapaPresentacion
             inputPassword.Text = "";
         }
 
-        private void titulo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void inputNombre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnVolver_Click(object sender, EventArgs e)
         {
             frmMenuPrincipal frmMenuPrincipal = new();
@@ -58,48 +28,40 @@ namespace CapaPresentacion
 
         private void btnRegistro_Click(object sender, EventArgs e)
         {
+            bool x;
             UsuarioCN capaNegocio = new();
 
-            UsuarioCD capaDatos = new UsuarioCD();
-
-            UsuarioCE user1 = new UsuarioCE()
+            if (!string.IsNullOrWhiteSpace(inputApellido.Text) &&
+                !string.IsNullOrWhiteSpace(inputPassword.Text) &&
+                !string.IsNullOrWhiteSpace(inputNombre.Text) &&
+                !string.IsNullOrWhiteSpace(inputMail.Text)
+                )
             {
-                Nombre = "",
-                Apellido = "",
-                Email = "",
-                Password = ""
-            };
+                x = Global.capaDatosU.UsuarioRegistro(capaNegocio.CrearUsuario(
+                        inputNombre.Text,
+                        inputApellido.Text,
+                        inputMail.Text,
+                        inputPassword.Text,
+                        0
+                ));
 
-            if (!string.IsNullOrWhiteSpace(inputNombre.Text) &&
-                !string.IsNullOrWhiteSpace(inputMail.Text) &&
-                !string.IsNullOrWhiteSpace(inputApellido.Text) &&
-                !string.IsNullOrWhiteSpace(inputPassword.Text))
-            {
-                user1 = capaDatos.UsuarioRegistro(capaNegocio.CrearUsuario(inputNombre.Text, inputApellido.Text, inputMail.Text, inputPassword.Text, 0));
-
-                if (user1 == UsuarioCE.userMain)
+                if (x)
                 {
-                    frmMenuUsuario frmMenuUsuario = new frmMenuUsuario();
+                    frmMenuUsuario frmMenuUsuario = new();
                     frmMenuUsuario.Show();
                     Close();
 
-                } else resetInputs();
+                }
+
+                else resetInputs();
 
             }
-            
+
             else
             {
                 MessageBox.Show("Completa todos los campos!");
                 resetInputs();
             }
-
-            
-
-        }
-
-        private void frmRegistro_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

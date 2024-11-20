@@ -1,7 +1,5 @@
-﻿using CapaDatos;
-using CapaEntidad;
+﻿using CapaEntidad;
 using System.Data.Common;
-using System.Reflection.Metadata;
 
 namespace CapaPresentacion
 {
@@ -14,7 +12,6 @@ namespace CapaPresentacion
 
         private void btnDepositar_Click(object sender, EventArgs e)
         {
-            UsuarioCD capaDatos = new();
             bool x;
 
             try
@@ -22,11 +19,12 @@ namespace CapaPresentacion
                 decimal monto = Convert.ToDecimal(inputMonto.Text);
                 if (!string.IsNullOrWhiteSpace(inputMonto.Text) && monto > 0)
                 {
-                    x = capaDatos.IngresarDinero(UsuarioCE.userMain, Convert.ToDecimal(inputMonto.Text));
+                    x = Global.capaDatosU.IngresarDinero(UsuarioCE.userMain, Convert.ToDecimal(inputMonto.Text));
 
-                    if (x) MessageBox.Show("El depósito se ha realizado correctamente", "Depósito completado");
+                    if (x)
+                        MessageBox.Show("El depósito se ha realizado correctamente", "Depósito Completado");
 
-                    capaDatos.ActualizarSaldo();
+                    Global.capaDatosU.ActualizarSaldo();
                     lblSaldo.Text = $"Tu saldo es de {UsuarioCE.userMain.Saldo:F3} USDT.";
                 }
 
@@ -59,8 +57,7 @@ namespace CapaPresentacion
 
         private void frmDepositoUsuario_Load(object sender, EventArgs e)
         {
-            UsuarioCD capaDatos = new();
-            capaDatos.ActualizarSaldo();
+            Global.capaDatosU.ActualizarSaldo();
             lblSaldo.Text = $"Tu saldo es de {UsuarioCE.userMain.Saldo:F3} USDT.";
         }
 

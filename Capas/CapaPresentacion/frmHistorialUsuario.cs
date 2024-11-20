@@ -1,15 +1,4 @@
-﻿using CapaDatos;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace CapaPresentacion
+﻿namespace CapaPresentacion
 {
     public partial class frmHistorialUsuario : Form
     {
@@ -22,9 +11,8 @@ namespace CapaPresentacion
         {
             inputSearch.Text = "";
 
-            UsuarioCD capaDatos = new();
-            capaDatos.HistorialUsuario(inputSearch.Text, dgvTabla);
-            dgvTabla.Columns["Cantidad"].DefaultCellStyle.Format = "F3";
+            Global.capaDatosU.HistorialUsuario(inputSearch.Text, dgvTabla);
+            Global.DgvFormato(dgvTabla, "Cantidad");
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -43,8 +31,8 @@ namespace CapaPresentacion
 
         private void inputSearch_TextChanged(object sender, EventArgs e)
         {
-            UsuarioCD capaDatos = new();
-            capaDatos.HistorialUsuario(inputSearch.Text, dgvTabla);
+            Global.capaDatosU.HistorialUsuario(inputSearch.Text, dgvTabla);
+            Global.DgvFormato(dgvTabla, "Cantidad");
         }
     }
 }

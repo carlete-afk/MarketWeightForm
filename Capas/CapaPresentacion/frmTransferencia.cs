@@ -1,5 +1,4 @@
-﻿using CapaDatos;
-using CapaEntidad;
+﻿using CapaEntidad;
 using System.Data.Common;
 
 namespace CapaPresentacion
@@ -22,10 +21,9 @@ namespace CapaPresentacion
         private void frmTransferencia_Load(object sender, EventArgs e)
         {
             lblCriptoActual.Text = "";
-            UsuarioCD capaDatos = new();
-            capaDatos.CriptosDelUsuario(dgvTabla);
-            dgvTabla.Columns["Cotización"].DefaultCellStyle.Format = "F3";
-            dgvTabla.Columns["Cantidad"].DefaultCellStyle.Format = "F3";
+
+            Global.capaDatosU.CriptosDelUsuario(dgvTabla);
+            Global.DgvFormato(dgvTabla, "Cotización", "Cantidad");
             dgvTabla.ClearSelection();
         }
 
@@ -50,7 +48,6 @@ namespace CapaPresentacion
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            UsuarioCD capaDatos = new();
             bool y;
 
             try
@@ -62,7 +59,7 @@ namespace CapaPresentacion
 
                 else
                 {
-                    y = capaDatos.TransferirCripto(dgvTabla.CurrentCell.Value.ToString(), UsuarioCE.userMain, Convert.ToDecimal(inputCantidad.Text), inputEmail.Text);
+                    y = Global.capaDatosU.TransferirCripto(dgvTabla.CurrentCell.Value.ToString(), UsuarioCE.userMain, Convert.ToDecimal(inputCantidad.Text), inputEmail.Text);
 
                     if (y) MessageBox.Show("Transferencia realizada correctamente!");
                     ResetInputs();
@@ -76,14 +73,10 @@ namespace CapaPresentacion
 
             finally
             {
-                capaDatos.CriptosDelUsuario(dgvTabla);
+                Global.capaDatosU.CriptosDelUsuario(dgvTabla);
+                Global.DgvFormato(dgvTabla, "Cotización", "Cantidad");
                 dgvTabla.ClearSelection();
             }
-        }
-
-        private void dgvTabla_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
