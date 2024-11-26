@@ -34,10 +34,10 @@ END $$
 /*Verifica y añade saldo a Usuario*/
 DELIMITER $$
 DROP TRIGGER IF EXISTS `aftInsertHistorial`$$
-CREATE DEFINER=`root`@`localhost` TRIGGER `aftInsertHistorial` AFTER INSERT ON `Historial` 
+CREATE TRIGGER `aftInsertHistorial` AFTER INSERT ON `Historial` 
 FOR EACH ROW
 BEGIN
-    IF(NEW.tipoAccion = 'compra')
+    IF(NEW.tipoAccion = 'Compra')
     THEN 
         UPDATE Usuario
         SET saldo = saldo - PrecioCompra(NEW.cantidad, NEW.idMoneda)
@@ -47,10 +47,10 @@ BEGIN
         SET cantidad = cantidad - NEW.cantidad
         WHERE `idMoneda` = NEW.`idMoneda`;
     END IF;
-    IF(NEW.tipoAccion = 'venta')
+    IF(NEW.tipoAccion = 'Venta')
     THEN
         UPDATE Usuario
-        SET saldo = saldo + PrecioCompra(NEW.cantidad, NEW.idMoneda)
+        SET saldo = saldo + PrecioCompra((NEW.cantidad * -1), NEW.idMoneda)
         WHERE idUsuario = NEW.idUsuario;
 
         UPDATE `Moneda`

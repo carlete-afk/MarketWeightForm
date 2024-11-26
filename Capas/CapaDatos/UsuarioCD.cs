@@ -88,6 +88,7 @@ namespace CapaDatos
                 cmd.ExecuteNonQuery();
 
                 UsuarioCE.userMain = usuario;
+                UsuarioCE.userMain.idUsuario = ObtenerIdUsuario(usuario.Email);
 
                 return true;
             }
@@ -138,7 +139,7 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("xcantidad", cantidad);
                 cmd.Parameters.AddWithValue("xnombre", nombreMoneda);
 
-                int rowsAffected = cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
 
                 return true;
             }
@@ -162,8 +163,7 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("xcantidad", cantidad);
                 cmd.Parameters.AddWithValue("xnombre", nombreMoneda);
 
-                int rowsAffected = cmd.ExecuteNonQuery();
-
+                cmd.ExecuteNonQuery();
 
                 return true;
             }
@@ -240,7 +240,7 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("xidusuario", usuario.idUsuario);
                 cmd.Parameters.AddWithValue("xsaldo", saldo);
 
-                int rowsAffected = cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
 
                 return true;
             }

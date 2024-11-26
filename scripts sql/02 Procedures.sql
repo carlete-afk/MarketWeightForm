@@ -38,7 +38,7 @@ BEGIN
                      AND idUsuario = xidusuario;
 
                      INSERT INTO Historial (idUsuario, idMoneda, cantidad, fechaHora, tipoAccion)
-                     VALUES (xidusuario, ObtenerIdMoneda(xnombre), xcantidad, NOW(), 'compra' );
+                     VALUES (xidusuario, ObtenerIdMoneda(xnombre), xcantidad, NOW(), 'Compra' );
               ELSE
                      SIGNAL SQLSTATE '45000'
                      SET MESSAGE_TEXT = "Saldo Insuficiente!";
@@ -73,7 +73,7 @@ BEGIN
               AND idUsuario = xidusuario;
 
               INSERT INTO Historial (idUsuario, idMoneda, cantidad, fechaHora, tipoAccion)
-              VALUES (xidusuario, ObtenerIdMoneda(xnombre), (xcantidad * -1), NOW(), 'venta');
+              VALUES (xidusuario, ObtenerIdMoneda(xnombre), (xcantidad * -1), NOW(), 'Venta');
        ELSE
               SIGNAL SQLSTATE '45000'
               SET MESSAGE_TEXT = "Cantidad Insuficiente!";
@@ -102,7 +102,7 @@ BEGIN
                      AND idUsuario = xidUsuarioTransfiere;
 
                      INSERT INTO Historial (idUsuario, idMoneda, cantidad, fechaHora, tipoAccion )
-                     VALUES (xidUsuarioTransfiere, ObtenerIdMoneda(xnombre), (xCantidad * -1), NOW(), 'transferencia');
+                     VALUES (xidUsuarioTransfiere, ObtenerIdMoneda(xnombre), (xCantidad * -1), NOW(), 'Transferencia');
               ELSE
                      SIGNAL SQLSTATE '45000'
                      SET MESSAGE_TEXT = "Cantidad Insuficiente!";
@@ -125,7 +125,7 @@ BEGIN
                      AND idUsuario = ObtenerIdUsuario(xemail);
 
                      INSERT INTO Historial ( idUsuario, idMoneda, cantidad, fechaHora, tipoAccion)
-                     VALUES (ObtenerIdUsuario(xemail), ObtenerIdMoneda(xnombre), xcantidad, NOW(), 'transferencia');
+                     VALUES (ObtenerIdUsuario(xemail), ObtenerIdMoneda(xnombre), xcantidad, NOW(), 'Transferencia');
        ELSE   
               SIGNAL SQLSTATE '45000'
               SET MESSAGE_TEXT = "Usuario/Email NO encontrado!!";

@@ -24,7 +24,8 @@ CALL AltaUsuario('Javier', 'Ramirez', 'javier.ramirez@example.com', 'welcome1');
 CALL IngresarDinero(1, 100000);
 CALL IngresarDinero(2, 10000);
 CALL IngresarDinero(3, 10000);
-CALL ComprarMoneda(1, 2, 'Bitcoin');
+CALL ComprarMoneda(1, 3, 'Bitcoin');
+CALL VenderMoneda(1, 1, 'Bitcoin');
 CALL ComprarMoneda(1, 2, 'Cardano');
 CALL ComprarMoneda(1, 2, 'Ripple');
 

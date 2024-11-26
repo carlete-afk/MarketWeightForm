@@ -15,7 +15,7 @@ namespace CapaPresentacion
         private void MenuUsuario_Load(object sender, EventArgs e)
         {
 
-            lblVersion.Text = nVersion;
+            lblVersion.Text = Global.nVersion;
 
             titulo.Text = $"Buen día {UsuarioCE.userMain.Nombre}!";
             Global.capaDatosU.ActualizarSaldo();
